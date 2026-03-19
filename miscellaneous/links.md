@@ -3,12 +3,17 @@
 ## Products
 
 [<mark style="color:blue;">Gemach</mark>](https://gemach.io)\
+[<mark style="color:blue;">GDex Pro</mark>](https://gdex.pro)\
+[<mark style="color:blue;">Gemach AI</mark>](https://gemach.io)\
+[<mark style="color:blue;">Gclaw</mark>](https://gclaw.gemach.io)\
 [<mark style="color:blue;">GBot</mark>](https://t.me/Gemach_Bot)\
 [<mark style="color:blue;">GLend</mark>](https://glend.gemach.io/)\
 [<mark style="color:blue;">GVault</mark>](https://gmacl.enzyme.community/vault/0x740cbfefb9ca9c1c99d95b711e959dd960f8bdb6)\
 [<mark style="color:blue;">GFund</mark>](https://www.tokensets.com/#/v2/set/0xf73642407B8d471cDbc60a095c9D9B28EfCDd710)\
 [<mark style="color:blue;">GLoans</mark>](https://stake.gemach.io)\
-[<mark style="color:blue;">GScanner</mark>](https://t.me/gbotscanner)
+[<mark style="color:blue;">GScanner</mark>](https://t.me/gbotscanner)\
+[<mark style="color:blue;">GDEX SDK (npm)</mark>](https://www.npmjs.com/package/@gdexsdk/gdex-skill)\
+[<mark style="color:blue;">GDEX Trading SDK (GitHub)</mark>](https://github.com/GemachDAO/gdex-trading-)
 
 ## Live Support
 
