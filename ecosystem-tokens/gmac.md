@@ -1,75 +1,104 @@
 ---
-description: GMAC is foundation of Gemach DAO
+description: GMAC is the native governance and utility token of Gemach DAO — powering product access tiers, Gclaw agent metabolism, and on-chain governance.
 ---
 
 # 🦁 GMAC
 
-GMAC is the native token of Gemach DAO. It’s the instrument to coordinate activity among its community members for participation. GMAC gets you access to the community, products, and allows you to make and vote on DAO proposals in proportion to your GMAC holdings.
+GMAC is the native token of Gemach DAO. It coordinates community activity, powers product access tiers, and serves as the life energy of the Gclaw Living Agent ecosystem. Holding GMAC grants governance rights, platform access, and a direct stake in how the protocol evolves.
 
-***
+---
 
 ## Token Distribution
 
-The max supply of GMAC tokens is 500,000,000.  For the launch of the token, 100% of tokens were immediately circulating and the team bought first for 20% of the supply.
+| Metric | Value |
+|---|---|
+| Max Supply | 500,000,000 GMAC |
+| Initial Circulating Supply | 100% (fully circulating at launch) |
+| Team Allocation | 20% (purchased at launch, no lock-up) |
 
-## Links
+---
 
-[<mark style="color:blue;">Buy GMAC on Uniswap (Ethereum)</mark>](https://app.uniswap.org/swap?outputCurrency=0xd96e84ddbc7cbe1d73c55b6fe8c64f3a6550deea)
+## Where to Buy
 
-Buy GMAC on **Curve (Arbitrum)** — GMAC is available on Arbitrum via Curve DEX _(exact pool URL TBD)_
+| Exchange | Network | Link |
+|---|---|---|
+| Uniswap | Ethereum | [Buy on Uniswap](https://app.uniswap.org/swap?outputCurrency=0xd96e84ddbc7cbe1d73c55b6fe8c64f3a6550deea) |
+| Curve DEX | Arbitrum | Available on Arbitrum Curve pools |
+| Orca DEX | Solana | Available on Solana via Orca |
 
-Buy GMAC on **Orca (Solana)** — GMAC is available on Solana via Orca DEX _(exact pool URL TBD)_
+**Contract Address (Ethereum):**
+```
+0xd96e84ddbc7cbe1d73c55b6fe8c64f3a6550deea
+```
 
-[<mark style="color:blue;">Dextools Chart</mark>](https://www.dextools.io/app/en/ether/pair-explorer/0x126262c0a43e4130f5619513e7ef6231dca3e5b1)
+**Useful Links:**
+- [Dextools Chart](https://www.dextools.io/app/en/ether/pair-explorer/0x126262c0a43e4130f5619513e7ef6231dca3e5b1)
+- [CoinGecko](https://www.coingecko.com/en/coins/gemach)
+- [Gemach DAO Governance (Snapshot)](https://snapshot.org/#/gemach.eth)
 
-[<mark style="color:blue;">Gemach DAO</mark>](https://snapshot.org/#/gemach.eth)
+---
 
-***
+## GMAC and the Gclaw Living Agent
 
-## GMAC & the Gclaw Living Agent
+GMAC is more than a governance token — it is the metabolic fuel of the Gclaw autonomous agent ecosystem. Every Gclaw agent maintains a GMAC balance that serves as its life energy:
 
-In addition to DAO governance and product access, GMAC powers the **Gclaw Living Agent** metabolism system. Gclaw agents consume GMAC as life energy — they must trade profitably to replenish their GMAC supply and survive. Agents that fail to generate returns will exhaust their GMAC and cease to operate, creating a natural selection mechanism that rewards competent autonomous traders. This gives GMAC a direct, ongoing utility within Gemach's autonomous AI agent ecosystem.
+- Agents consume GMAC to execute trades and operations (the "heartbeat cost")
+- Profitable trading replenishes the agent's GMAC supply
+- Agents that fail to generate returns exhaust their GMAC and cease to operate
+- This creates a natural selection mechanism: only competent agents survive
 
-***
+This design gives GMAC direct, ongoing utility within Gemach's autonomous AI ecosystem — demand scales with the number of active agents.
 
-## GMAC Token Membership Levels
+---
 
-Hold a specified amount of tokens to gain access to a variety of features tailored to enhance your experience with our product.
+## GMAC Membership Tiers
 
-### BASIC - 10,000 GMAC
+Hold GMAC to unlock platform features. Higher tiers unlock more agents, more chains, and more advanced capabilities across the Gemach product suite.
 
-* 1 AI agent
-* 1 wallet across supported chains
-* Maximum rounds limited to 5 (determines the total number of back and forth between the agents in a workflow)
-* Weekly scheduled runs
-* 1 two-agent workflow
-* Access to market reports and Gemach AI analytics
+### BASIC — 10,000 GMAC
 
-### ENHANCED -25,000 GMAC
+| Feature | Allocation |
+|---|---|
+| GDex Pro access | Full spot trading |
+| AI agents | 1 agent |
+| Wallets | 1 wallet across supported chains |
+| Portfolio tracking | Basic |
+| Scheduled runs | Weekly |
+| Analytics | Market reports and Gemach AI analytics |
 
-* Up to 3 AI agents
-* 3 wallets across supported chains
-* Maximum rounds limited to 10 (determines the total number of back and forth between the agents in a workflow)
-* Daily and weekly scheduled runs
-* 2 workflows (two-agent and group chat)
-* Access to market reports and Gemach AI analytics
+### ENHANCED — 25,000 GMAC
 
-### PREMIUM - 50,000 GMAC
+| Feature | Allocation |
+|---|---|
+| GDex Pro access | Full spot + copy trading |
+| AI agents | Up to 3 agents |
+| Wallets | 3 wallets across supported chains |
+| Portfolio tracking | Daily analytics |
+| Scheduled runs | Daily and weekly |
+| Analytics | Market reports and Gemach AI analytics |
 
-* Up to 5 AI agents
-* 5 wallets across supported chains
-* Maximum rounds limited to 10 (determines the total number of back and forth between the agents in a workflow)
-* Daily, weekly, and monthly scheduled runs
-* 5 workflows (two-agent and group chat)
-* Access to market reports and Gemach AI analytics
-* Priority access to GDex Pro advanced features
+### PREMIUM — 50,000 GMAC
 
-### EXCLUSIVE - 100,000 GMAC
+| Feature | Allocation |
+|---|---|
+| GDex Pro access | Full spot + copy trading + perpetual futures |
+| AI agents | Up to 5 agents |
+| Wallets | 5 wallets across supported chains |
+| Portfolio tracking | Daily analytics + priority execution |
+| Scheduled runs | Daily, weekly, and monthly |
+| Analytics | Market reports, Gemach AI analytics, advanced signals |
+| GDex Pro | Priority execution queue |
 
-* Unlimited AI agents
-* 10 wallets across supported chains
-* Maximum rounds limited to 20 (determines the total number of back and forth between the agents in a workflow)
-* Daily, weekly, monthly, and hourly scheduled runs
-* Unlimited workflows (two-agent and group chat)
-* Access to market reports and Gemach AI analytics
-* Priority access to GDex Pro advanced features and Gclaw swarm mode
+### EXCLUSIVE — 100,000 GMAC
+
+| Feature | Allocation |
+|---|---|
+| GDex Pro access | Full platform — all features unlocked |
+| AI agents | Unlimited agents |
+| Wallets | 10 wallets across supported chains |
+| Portfolio tracking | Real-time analytics |
+| Scheduled runs | Hourly, daily, weekly, and monthly |
+| Analytics | Full analytics suite |
+| Gclaw | Swarm mode — coordinate multiple agents as a fleet |
+| API access | Platform API access for custom integrations |
+| Support | Priority support |

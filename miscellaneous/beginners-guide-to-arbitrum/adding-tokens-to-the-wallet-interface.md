@@ -1,19 +1,33 @@
+---
+description: How to add custom tokens to your MetaMask wallet interface so your Arbitrum balances display correctly.
+---
+
 # 🗃️ Adding Tokens to the Wallet Interface
 
-In order for tokens to appear in the wallet interface, they need to be manually added. Tokens that have not been imported will still be received by your wallet, but they won't show up natively.
+Tokens you receive are always in your wallet — but they will not appear in the MetaMask interface until you import them. This is a one-time step per token.
 
-1. The project's official website will provide you with the contract address. Additionally, you can find popular token contract addresses such as USDC, USDT, wBTC and etc. on [<mark style="color:blue;">https://arbiscan.io/</mark>](https://arbiscan.io/)
+---
 
-_(Scammers create fake contracts that you should always be aware of, always verify the address and source of the contract)_
+## Steps
 
-* Once you obtain the token address tap on <mark style="color:yellow;">Import tokens</mark>
+### 1. Find the Token Contract Address
 
-<figure><img src="../../.gitbook/assets/1 Token import.jpeg" alt=""><figcaption></figcaption></figure>
+The project's official website or documentation will list the contract address. You can also look up popular token addresses on [Arbiscan](https://arbiscan.io/).
 
-&#x20;2\. Once you paste in the contract address of the token, MetaMask should fill out the remaining details for you. Manually add them if they aren't already there.
+> ⚠️ **Warning:** Scammers create fake tokens with similar names. Always verify the contract address against the official project source before importing. Never import a contract address sent to you by a stranger.
 
-<figure><img src="../../.gitbook/assets/2 Token import.jpeg" alt=""><figcaption></figcaption></figure>
+### 2. Open MetaMask and Import Token
 
-When you are finished, tap <mark style="color:yellow;">Add Custom Token</mark>
+In MetaMask, scroll down and click **Import tokens**.
 
-3\. The balance of the token you just added will now appear in your wallet
+### 3. Paste the Contract Address
+
+Paste the contract address into the **Token Contract Address** field. MetaMask will automatically fill in the token symbol and decimals if the contract is verified on-chain. If it does not fill in automatically, enter the details manually.
+
+### 4. Add the Token
+
+Click **Add Custom Token**, then **Import Tokens** to confirm.
+
+---
+
+The token balance will now appear in your MetaMask wallet interface. Repeat this process for each new token you want to track.

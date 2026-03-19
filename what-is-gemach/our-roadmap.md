@@ -1,33 +1,54 @@
+---
+description: Gemach's development history and forward-looking milestones — from 2024 foundation to 2026 autonomous agent ecosystem.
+---
+
 # 🛣️ Our Roadmap
 
-## ✅ Completed Milestones
+---
 
-* **GLend Protocol Launch** — Algorithmic lending and borrowing money markets on Arbitrum, including GMX V2 integration for yield strategies, dynamic interest rates, and GLEND token incentives.
-* **GBot Telegram Trading Bot** — Fast sniper and trading bot deployed across Solana and EVM chains, accessible directly from Telegram.
-* **Alpha Intelligence AI Tools** — AI-powered crypto market analytics and trading signals launched as part of the Gemach ecosystem.
-* **GMAC & GLEND Token Launches** — Native governance and protocol tokens launched with full community distribution.
-* **GLoans, GVault, GFund** — Liquity-based loan frontend (GLoans), Enzyme-powered vault strategy (GVault), and Token Sets managed fund (GFund) deployed and integrated into the Gemach product suite.
+## ✅ Completed (2024)
 
-***
+- ✅ **GLend Protocol** — Algorithmic lending and borrowing on Arbitrum; GMX V2 yield integration; dynamic interest rates; GLEND token incentives
+- ✅ **GBot** — Telegram-native sniper and trading bot on Solana and EVM chains
+- ✅ **Alpha Intelligence** — AI-powered market analytics and trading signals
+- ✅ **GMAC & GLEND Launches** — Governance and protocol tokens fully distributed to community
+- ✅ **GLoans** — Interest-free LUSD loans via Liquity protocol
+- ✅ **GVault** — Non-custodial Enzyme vault strategy
+- ✅ **GFund** — TokenSets managed index fund
 
-## 🔄 Current Focus (2025–2026)
+---
 
-* **GDex Pro** — All-in-one multi-chain trading terminal live at [gdex.pro](https://gdex.pro). Features include spot trading across Solana, Ethereum, Base, BNB Chain, Arbitrum, and Optimism; HyperLiquid-powered perpetual trading; copy trading; cross-chain bridge; Memescope real-time feeds; Bubble Map visualization; Web3Auth social login; and Apple Pay fiat on-ramp.
-* **Gemach AI** — Natural language DeFi interface enabling users to execute swaps, manage portfolios, and interact with protocols (including Stryke and Symbiosis) via plain-language commands across multiple chains.
-* **Gclaw — The Living Agent** — Autonomous AI trading agent written in Go, powered by the GDEX SDK. Gclaw operates with a unique GMAC-metabolism system: agents must trade profitably to consume GMAC as life energy and survive. Features include a goodwill reputation system, self-replication, and swarm mode. Live at [gclaw.gemach.io](https://gclaw.gemach.io).
-* **GDEX SDK Ecosystem** — Open developer toolkit (`@gdexsdk/gdex-skill` npm package, MCP server, AI agent skills library) enabling third-party developers and AI agents to integrate with Gemach's multi-chain DeFi infrastructure. Also includes `gdex-trading-` TypeScript trading bot and `hyper-liquid-trader-sdk`.
-* **Multi-Chain Expansion** — Extending product coverage to Sui, Sonic, and Berachain in addition to existing Solana, Ethereum, Base, BNB Chain, Arbitrum, and Optimism support.
-* **GMAC Multi-Chain Availability** — GMAC now tradeable on Ethereum via Uniswap, Arbitrum via Curve DEX, and Solana via Orca DEX — expanding access and liquidity across the ecosystem.
+## ✅ Delivered (2025)
 
-***
+- ✅ **GDex Pro** — Multi-chain trading terminal live at [gdex.pro](https://gdex.pro): spot trading, HyperLiquid perps, copy trading, cross-chain bridge, Memescope, Bubble Maps, Web3Auth social login, Apple Pay on-ramp
+- ✅ **Gemach AI** — Natural-language DeFi interface; Stryke and Symbiosis protocol integrations; multi-chain portfolio management
+- ✅ **Gclaw Living Agent** — Autonomous AI trading agent with GMAC metabolism, goodwill system, and swarm mode; live at [gclaw.gemach.io](https://gclaw.gemach.io)
+- ✅ **GDEX SDK** — Open developer toolkit (`@gdexsdk/gdex-skill` npm package, MCP server, Agent Skills library)
+- ✅ **GMAC Multi-Chain** — GMAC available on Uniswap (Ethereum), Curve (Arbitrum), and Orca (Solana)
+- ✅ **Community Programs** — Ambassador program, contributor recognition, and strategic partnerships established
+- ✅ **Agent Skills System** — Modular skills marketplace; 22 built-in skills; ClawHub registry launched
 
-## 🔮 Future Roadmap
+---
 
-* **Continued AI Agent Evolution** — Expanding Gclaw's capabilities, swarm intelligence, and cross-chain autonomy. Deeper Gemach AI integrations across more protocols and chains.
-* **Expanded Chain Coverage** — Ongoing integration of emerging L1s and L2s as the multi-chain ecosystem grows.
-* **Community Governance Growth** — Expanding GMAC-based DAO governance to cover more protocol decisions, treasury management, and ecosystem grants.
-* **Developer Ecosystem Expansion** — Growing the GDEX SDK with additional skills, MCP integrations, and partner tooling to foster a thriving builder community around Gemach's infrastructure.
+## 🔄 Current Focus (Q1–Q2 2026)
 
-***
+- 🔄 **Gclaw Living Agent Ecosystem** — Advanced swarm coordination, architect mode, and cross-chain autonomy expansion
+- 🔄 **Agent Skills Marketplace** — Community-submitted skills, ClawHub publishing pipeline, skill monetization framework
+- 🔄 **GDex Pro Perpetual Expansion** — Additional perpetual pairs, enhanced risk controls, liquidation monitoring tools
+- 🔄 **Cross-Chain Bridge Improvements** — Faster settlement, more routes, lower fees on high-volume paths
+- 🔄 **Gemach AI Multi-Protocol** — Expanded protocol coverage; deeper GLend, GVault, and GFund integrations via natural language
 
-Please keep in mind that this roadmap is a work in progress and will continue to be added upon. It's designed to guide Gemach towards a future where DeFi is accessible, secure, and beneficial for everyone. Our goals are ambitious, yet achievable, with a focus on continual improvement and adaptation to the evolving DeFi landscape.
+---
+
+## 🔮 Ahead (H2 2026 and Beyond)
+
+- **Autonomous Trading Swarms** — Fully coordinated multi-agent swarms with shared strategy and on-chain governance
+- **Institutional-Grade APIs** — REST and WebSocket APIs for institutional integrators, algorithmic traders, and third-party AI systems
+- **Mobile-Native Experience** — Native iOS and Android apps with full GDex Pro feature parity and Gemach AI integration
+- **DAO Treasury Management Tools** — On-chain tooling for proposal execution, treasury diversification, and contributor payments
+- **Expanded Chain Coverage** — Continuous integration of high-traction L1s and L2s as the multi-chain ecosystem grows
+- **Developer Ecosystem Growth** — GDEX SDK v2, additional MCP tools, partner integrations, and hackathon grants program
+
+---
+
+> This roadmap is a living document. Items are prioritized based on community input, technical feasibility, and market conditions. Governance proposals can accelerate or reorder any milestone.
