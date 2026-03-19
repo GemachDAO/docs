@@ -7,6 +7,15 @@
   * [🛣️ Our Roadmap](what-is-gemach/our-roadmap.md)
   * [👥 Our Contributors](what-is-gemach/our-contributors.md)
 
+## Getting Started
+
+* [🚀 Getting Started](getting-started/README.md)
+  * [💰 What is Cryptocurrency?](getting-started/what-is-cryptocurrency.md)
+  * [👛 What is a Crypto Wallet?](getting-started/what-is-a-wallet.md)
+  * [🏦 What is DeFi?](getting-started/what-is-defi.md)
+  * [🎯 Your First Trade on GDex Pro](getting-started/your-first-trade-on-gdex.md)
+  * [📖 Common Terms Glossary](getting-started/common-terms-glossary.md)
+
 ## Products
 
 * [🪬 GDex Pro](products/gdex-pro/README.md)
