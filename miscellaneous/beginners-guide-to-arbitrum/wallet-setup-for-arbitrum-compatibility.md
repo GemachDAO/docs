@@ -1,51 +1,48 @@
+---
+description: How to add the Arbitrum One network to your MetaMask wallet using Chainlist or manual configuration.
+---
+
 # 🛠️ Wallet Setup for Arbitrum Compatibility
 
-Even though you can use other wallets, Metamask is the one we recommend. Throughout this guide, we will assume that you are using the Metamask wallet since it is the one most people use, the process of setting up a wallet should be very similar regardless of the wallet you choose.
+Before you can use Arbitrum, you need to add the network to your wallet. There are two methods: using Chainlist (automatic) or adding the network manually.
 
-It's worth mentioning that Nitro network settings are the same as Arbitrum One's previous settings.
+---
 
-The easiest way to add Arbitrum to your wallet is through Chainlist.\
-Using the steps below, you can add Arbitrum to your wallet without typing anything manually.
+## Method 1: Using Chainlist (Recommended)
 
-1. Go to [<mark style="color:blue;">https://chainlist.org/</mark>](https://chainlist.org/)
-2. Click ‘Connect Wallet’ upon notification from your wallet click <mark style="color:yellow;">Approve</mark>
+[Chainlist](https://chainlist.org/) is the easiest way to add networks to MetaMask.
 
-<figure><img src="../../.gitbook/assets/1 connect your wallet chainlist (2).png" alt=""><figcaption></figcaption></figure>
+1. Go to [chainlist.org](https://chainlist.org/)
+2. Click **Connect Wallet** and approve the connection in your wallet
+3. Search for **Arbitrum One** in the search bar
+4. Click **Add to MetaMask** next to Arbitrum One
+5. Approve the network addition in your wallet popup
+6. Click **Switch network** when prompted to switch to Arbitrum One
 
-3\. Locate Arbitrum One and click <mark style="color:yellow;">Add to metamask</mark>
+Your wallet is now connected to Arbitrum One.
 
-<figure><img src="../../.gitbook/assets/2 Add Arbitrum One to metamask chainlist.png" alt=""><figcaption></figcaption></figure>
+---
 
-4\. Upon notification from your wallet click <mark style="color:yellow;">Approve</mark>
+## Method 2: Manual Configuration
 
-<figure><img src="../../.gitbook/assets/3 add network chainlist.png" alt=""><figcaption></figcaption></figure>
+If you prefer to add the network manually:
 
-5\. In the following popup click <mark style="color:yellow;">Switch network</mark>
+1. Open MetaMask and click the network dropdown at the top
+2. Click **Add Network** at the bottom
+3. The **Add a Network** page will open — enter the following details:
 
-<figure><img src="../../.gitbook/assets/4 switch network chainlist (1).png" alt=""><figcaption></figcaption></figure>
+| Field | Value |
+|---|---|
+| Network Name | Arbitrum One |
+| New RPC URL | `https://arb1.arbitrum.io/rpc` |
+| Chain ID | `42161` |
+| Currency Symbol | ETH |
+| Block Explorer URL | `https://arbiscan.io` |
 
-6\. You can now use the Arbitrum network.
+4. Click **Save** to add the network
 
-**In case you do not wish to interact with the Chainlist website, you can manually add Arbitrum to your wallet. Below are the steps you need to follow:**
+---
 
-1. The first step is to open Metamask and select the network dropdown menu.
+## Next Steps
 
-<figure><img src="../../.gitbook/assets/5 Wallet setup.webp" alt=""><figcaption></figcaption></figure>
-
-2\. When the pop-up appears, click <mark style="color:yellow;">Add Network</mark>
-
-<figure><img src="../../.gitbook/assets/6 Wallet setup.png" alt=""><figcaption></figcaption></figure>
-
-3\. The <mark style="color:yellow;">Add a network</mark> page will open. Add the following details:
-
-Network name: Arbitrum \
-New RPC URL: https://arb1.arbitrum.io/rpc or https://rpc.ankr.com/arbitrum \
-Chain ID: 42161 \
-Currency symbol: ETH \
-Block Explorer URL: https://arbiscan.io/&#x20;
-
-<figure><img src="../../.gitbook/assets/7 Wallet setup.jpeg" alt=""><figcaption></figcaption></figure>
-
-Once you're finished, click <mark style="color:yellow;">Save</mark>
-
-4\. You are now connected to the Arbitrum network.
+With Arbitrum configured, follow the [Bridging Tokens to Arbitrum](bridging-tokens-to-arbitrum.md) guide to move funds onto the network.

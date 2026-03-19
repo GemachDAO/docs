@@ -1,21 +1,24 @@
+---
+description: A step-by-step guide to setting up a wallet and getting started on Arbitrum — Ethereum's leading Layer 2 network.
+---
+
 # 📒 Beginner's Guide (to Arbitrum)
 
-Arbitrum is built by [Offchain Labs](https://offchainlabs.com/), which consists of world-class blockchain engineers, researchers, and Ethereum experts. Arbitrum One mainnet launched on the 31st of August 2021.
+Arbitrum is built by [Offchain Labs](https://offchainlabs.com/), a team of world-class blockchain engineers, researchers, and Ethereum experts. Arbitrum One mainnet launched on August 31, 2021.
 
-* Arbitrum serves as Ethereum's next-generation layer-2.
-* The layer-2 solution facilitates transactions through off-chain means before bundling and submitting them as a single transaction to the base layer, thus supporting Ethereum scaling. As a result, layer-1 Ethereum transactions will not be slowed down by many transaction requests.
-* Arbitrum is an Optimistic Rollup solution. Optimistic rollups are smart contracts that bundle transactions, reducing computation time and gas consumption. By utilizing Optimistic Rollups, Arbitrum can ensure inexpensive gas fees while relying on Ethereum's L1 security.
-* Arbitrum successfully migrated the existing Arbitrum One network to Arbitrum Nitro on the 31st of August, 2022.
-* On March 23, Arbitrum distributed its highly-anticipated $ARB governance token.
+- Arbitrum serves as Ethereum's next-generation Layer 2, bundling many transactions into one before submitting to Ethereum L1 — dramatically reducing fees while inheriting Ethereum security
+- It uses Optimistic Rollups: smart contracts that batch transactions to reduce computation time and gas consumption
+- Arbitrum successfully migrated to Arbitrum Nitro on August 31, 2022, further improving performance
+- On March 23, 2023, Arbitrum distributed its $ARB governance token to the community
 
-As with any other chain, Arbitrum has a similar onboarding process. Adding support for Arbitrum to your wallet is all you need to do, and then you can transfer funds to the network through one of the bridges that offer Arbitrum transfer support or send funds from a centralized exchange.
+Adding Arbitrum support to your wallet is all you need to get started. Once set up, you can transfer funds via one of the supported bridges or from a centralized exchange that supports Arbitrum withdrawals.
 
-#### Now that we've covered Arbitrum, let's learn how to:
+---
 
-* #### [<mark style="color:blue;">create a wallet</mark>](wallet-creation.md)
-* #### [<mark style="color:blue;">set up a wallet</mark>](wallet-setup-for-arbitrum-compatibility.md)
-* #### [<mark style="color:blue;">migrate funds</mark>](bridging-tokens-to-arbitrum.md)
+## Getting Started Steps
 
-{% hint style="danger" %}
-#### Be aware that all transaction fees on Arbitrum are payable in <mark style="color:blue;">ETH</mark>
-{% endhint %}
+1. **[Create a wallet](wallet-creation.md)** — set up MetaMask if you do not have a wallet yet
+2. **[Set up for Arbitrum](wallet-setup-for-arbitrum-compatibility.md)** — add the Arbitrum network to your wallet
+3. **[Bridge funds](bridging-tokens-to-arbitrum.md)** — move ETH or tokens to Arbitrum
+
+> ⚠️ **Important:** All transaction fees on Arbitrum are paid in **ETH**. Always keep some ETH in your Arbitrum wallet to cover gas costs.
