@@ -100,7 +100,7 @@ Common scam patterns to watch for:
 - **Fake support accounts** on Telegram/Discord with usernames similar to official accounts
 - **Airdrop scams** — "connect your wallet to claim your GMAC" on unofficial domains
 - **Urgent action requests** — "your funds are at risk, act now" messages designed to create panic
-- **Fake token contracts** — tokens named GMAC or GLEND on incorrect contract addresses
+- **Fake token contracts** — tokens named GMAC on incorrect contract addresses
 
 ---
 

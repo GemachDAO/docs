@@ -75,7 +75,6 @@
 ## Ecosystem Tokens
 
 * [🦁 GMAC](ecosystem-tokens/gmac.md)
-* [🪙 GLEND](ecosystem-tokens/glend.md)
 
 ## Miscellaneous
 

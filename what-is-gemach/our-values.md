@@ -10,7 +10,7 @@ We build every product with the assumption that users own their keys and we neve
 
 ## 2. Community Governance
 
-Gemach is not a company with a product roadmap decided by executives. Protocol parameters, treasury allocation, new product launches, and contributor rewards are decided by GMAC and GLEND holders through on-chain governance. This means the people with the most at stake in the protocol are the ones setting its direction. We invest in governance tooling, transparency, and proposal infrastructure because informed communities make better decisions than closed teams.
+Gemach is not a company with a product roadmap decided by executives. Protocol parameters, treasury allocation, new product launches, and contributor rewards are decided by GMAC holders through on-chain governance. This means the people with the most at stake in the protocol are the ones setting its direction. We invest in governance tooling, transparency, and proposal infrastructure because informed communities make better decisions than closed teams.
 
 ## 3. Radical Transparency
 

@@ -55,9 +55,8 @@ New to Gemach? The fastest path to your first on-chain trade:
 
 ## Governed by the Community
 
-Gemach is owned and directed by its community through two governance tokens:
+Gemach is owned and directed by its community through the GMAC governance token:
 
 - **GMAC** — the native DAO token powering governance, product access tiers, and Gclaw agent metabolism. Max supply: 500,000,000. Tradeable on Uniswap (Ethereum), Curve (Arbitrum), and Orca (Solana).
-- **GLEND** — the GLend protocol token providing governance rights, yield-sharing from protocol revenue, and liquidity incentives on Arbitrum.
 
 Governance proposals are live at [snapshot.org/#/gemach.eth](https://snapshot.org/#/gemach.eth).

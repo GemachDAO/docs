@@ -53,5 +53,4 @@ description: Quick reference links to all Gemach products, social channels, comm
 | Token | Link |
 |---|---|
 | GMAC (CoinGecko) | [coingecko.com/en/coins/gemach](https://www.coingecko.com/en/coins/gemach) |
-| GLEND (CoinGecko) | [coingecko.com/en/coins/glend](https://www.coingecko.com/en/coins/glend) |
 | Gemach DAO Governance | [snapshot.org/#/gemach.eth](https://snapshot.org/#/gemach.eth) |
