@@ -59,11 +59,6 @@ Gemach DAO's native governance token. Holding GMAC gives you access to premium f
 
 ---
 
-**GLEND**
-Gemach's lending protocol governance token. Used within the [GLend](../products/glend/README.md) lending and borrowing platform.
-
----
-
 **Governance**
 The process by which token holders vote on decisions about a protocol's future — like changing fees, adding new features, or managing the treasury. Holding GMAC gives you a governance vote in Gemach DAO.
 

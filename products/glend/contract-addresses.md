@@ -4,9 +4,7 @@ description: Deployed Smart Contracts on Arbitrum
 
 # 📜 Contract Addresses
 
-<table><thead><tr><th width="446">Contract</th><th width="252">Address</th></tr></thead><tbody><tr><td>GLEND Token</td><td><pre><code>0x43df266501dff4773f8f33179e3b96ab94dbc28d
-</code></pre></td></tr><tr><td>Camelot V3 GLEND/WETH Pool</td><td><pre><code>0xe9d3e6811d1be8ba40a9273ebec6ff09fe2a6741
-</code></pre></td></tr><tr><td>Comptroller</td><td><pre><code>0x5D57328423BEd206E0EE41c32bbCE4252E303d54
+<table><thead><tr><th width="446">Contract</th><th width="252">Address</th></tr></thead><tbody><tr><td>Comptroller</td><td><pre><code>0x5D57328423BEd206E0EE41c32bbCE4252E303d54
 </code></pre></td></tr><tr><td>Unitroller</td><td><pre><code>0xeed247Ba513A8D6f78BE9318399f5eD1a4808F8e
 </code></pre></td></tr><tr><td>Price Oracle</td><td><pre><code>0x7aa74f173bf3FF1Dc43858b8C109E9002F152FdC
 </code></pre></td></tr><tr><td>Stablecoin Interest Rate Model</td><td><pre><code>0xa738b4910b0a93583a7e3e56d73467fe7c538158

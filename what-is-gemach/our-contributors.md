@@ -12,8 +12,8 @@ Gemach is an open-source, community-driven project. The core products are built 
 
 | Contributor | Role |
 |---|---|
-| [KingBlueberry.eth](https://x.com/WinnerGBC) | Founder & Lead — protocol architecture, GLend development, product strategy |
-| [Assune.eth](https://x.com/cotlage) | Lead Developer — Gemach platform, GDex Pro, Gemach AI |
+| [Assune.eth](https://x.com/cotlage) | Founder & Lead Developer — Gemach platform, GDex Pro, Gemach AI |
+| [KingBlueberry.eth](https://x.com/WinnerGBC) | Lead — protocol architecture, GLend development, product strategy |
 | [0xKaizendev](https://github.com/0xKaizendev) | Gemach Developer |
 | [John Gicharu](https://github.com/johngicharu) | Gemach Developer |
 | [Nicolas Limonoff](https://gemachlend.medium.com/welcome-nicolas-limonoff-4d28703fe585) | GLend Front-End Developer |
