@@ -67,7 +67,9 @@ const { sessionPrivateKey, sessionKey } = generateGdexSessionKeyPair();
 const userId = '0xYourControlWallet';
 const nonce = String(Math.floor(Date.now() / 1000) + Math.floor(Math.random() * 1000));
 const message = buildGdexSignInMessage(userId, nonce, sessionKey);
-const signature = /* wallet.signMessage(message) */ '';
+// Sign `message` with the user's control wallet (EIP-191), e.g.:
+//   const signature = await new ethers.Wallet(controlPrivateKey).signMessage(message);
+const signature = await signWithControlWallet(message);
 
 // 3. Submit the encrypted sign-in payload
 const signIn = buildGdexSignInComputedData({ apiKey, userId, sessionKey, nonce, signature });
@@ -173,6 +175,9 @@ await skill.updateOrder({
 });
 
 // List active orders (session-key auth)
+// `data` is the encrypted session key from buildGdexUserSessionData(sessionKey, apiKey)
+import { buildGdexUserSessionData } from '@gdexsdk/gdex-skill';
+const encryptedSessionKey = buildGdexUserSessionData(sessionKey, GDEX_API_KEY_PRIMARY);
 const { count, orders } = await skill.getLimitOrders({ userId, data: encryptedSessionKey, chainId: 622112261 });
 ```
 
