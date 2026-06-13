@@ -1,214 +1,184 @@
 ---
-description: The anatomy of a SKILL.md file — every field, every section, and how agents read them
+description: The anatomy of a GDEX SKILL.md file, the skill.json action manifest, and how the gdex-skill package is structured
 ---
 
 # 📄 SKILL.md Format Reference
 
-A `SKILL.md` file is the single source of truth for a skill. It tells the agent what the skill is for, what tools are available, how to use them, and what success looks like. This page documents every section of the format.
+A `SKILL.md` file is the single source of truth for a skill. It tells the agent what the skill is for, when to use it, and exactly which SDK methods or API endpoints to call. This page documents the format used by the [`GemachDAO/gdex-skill`](https://github.com/GemachDAO/gdex-skill) package.
 
-## Directory Structure
+## Package Layout
 
-A skill package lives in its own directory. The directory name becomes the skill's identifier.
+The gdex-skill repository follows a **multi-skill** layout: each skill is its own directory under `skills/`, and a top-level `skill.json` describes the machine-readable action manifest consumed by [skills.sh](https://skills.sh) and the MCP server.
 
 ```
-workspace/skills/
-└── my-skill/
-    ├── SKILL.md          # Required — the skill definition
-    ├── helpers/          # Optional — helper scripts called by tools
-    │   ├── action.js     # Node.js helper
-    │   ├── process.py    # Python helper
-    │   └── run.sh        # Shell helper
-    └── context/          # Optional — static context files (data, templates)
-        └── reference.md
+gdex-skill/
+├── skill.json              # skills.sh action manifest (name, auth, base_url, actions[])
+├── skills.sh.json          # grouping/ordering of skills for the skills.sh CLI
+├── skills/
+│   ├── gdex-onboarding/
+│   │   └── SKILL.md        # one skill = one directory + one SKILL.md
+│   ├── gdex-spot-trading/
+│   │   └── SKILL.md
+│   └── …                   # 27 skills total
+├── src/                    # the @gdexsdk/gdex-skill TypeScript SDK
+└── mcp-server/             # the 116-tool MCP server
 ```
 
-The `SKILL.md` file is required. Everything else is optional.
+The directory name becomes the skill's identifier (e.g. `gdex-spot-trading`) and must match the `name` field in the `SKILL.md` front matter.
 
-## Full SKILL.md Template
+## SKILL.md Front Matter
 
-```markdown
----
-name: skill-name
-description: One-sentence description of what this skill enables.
-version: 1.0.0
-author: your-name
----
-
-# Skill Name
-
-## Description
-
-A longer description of what this skill does, why it exists, and when an
-agent should use it. Aim for 2–4 sentences. Be precise — agents read this
-to decide if the skill is relevant to the current task.
-
-## Instructions
-
-Detailed instructions for the agent on how to use this skill. This section
-is loaded directly into the agent's context. Write it as you would write a
-system prompt:
-
-- Be explicit about what the skill can and cannot do
-- List prerequisite state (e.g., "wallet must be authenticated before calling buy")
-- Describe error conditions and how to handle them
-- Use numbered steps for multi-step processes
-
-## Tools
-
-### tool_name
-
-**Description:** What this tool does in one sentence.
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `param1` | string | Yes | The thing to act on |
-| `param2` | number | No | Optional configuration value |
-
-**Returns:** Description of the return value.
-
-**Example call:**
-```json
-{
-  "tool": "tool_name",
-  "parameters": {
-    "param1": "example-value"
-  }
-}
-```
-
-### another_tool
-
-...repeat for each tool...
-
-## Examples
-
-### Example 1: Basic Use Case
-
-**Prompt:** "Do the most common thing this skill handles."
-
-**Expected behavior:**
-1. Agent calls `tool_name` with the relevant parameters
-2. Agent parses the response
-3. Agent reports the result to the user
-
-### Example 2: Edge Case
-
-**Prompt:** "Handle a less common but important scenario."
-
-**Expected behavior:**
-1. Agent detects the edge condition
-2. Agent calls the fallback tool
-3. Agent explains what happened and why
-
-## Error Handling
-
-| Error | Meaning | Recommended Action |
-|-------|---------|-------------------|
-| `ERR_NOT_FOUND` | Resource does not exist | Inform user; do not retry |
-| `ERR_RATE_LIMIT` | API rate limit hit | Wait 30s and retry once |
-| `ERR_AUTH` | Authentication failed | Re-run authentication flow |
-```
-
-## Required Sections
-
-Every `SKILL.md` must include the following sections:
-
-### Front Matter
-
-The YAML front matter block at the top of the file:
+Every `SKILL.md` opens with a minimal YAML front-matter block — just two fields:
 
 ```yaml
 ---
-name: skill-name           # kebab-case identifier matching the directory name
-description: ...           # one-sentence summary shown in skill listings
-version: 1.0.0             # semantic version
-author: your-name          # creator handle or GitHub username
+name: gdex-spot-trading
+description: Buy and sell tokens on Solana, Sui, and EVM chains with automatic DEX routing, slippage control, and percentage-based sells
 ---
 ```
 
-The `name` field must exactly match the parent directory name. Mismatches cause skill loading to fail silently.
-
-### Description
-
-A human-readable explanation of what the skill enables. Agents use this section to decide whether the skill applies to the current task. Be specific: "trades tokens on Solana and EVM chains using GDEX" is better than "helps with trading."
+| Field | Required | Purpose |
+|-------|----------|---------|
+| `name` | ✅ | kebab-case identifier; must match the parent directory name exactly |
+| `description` | ✅ | One sentence shown in skill listings; agents read this to decide whether the skill is relevant |
 
 {% hint style="info" %}
-The `Description` section is written for **humans** — it appears in skill listings and helps developers understand what a skill does. The `Instructions` section below is written for **agents** and is loaded directly into the agent's working context.
+The `description` is the most important line in the file. The agent uses it to route a user request to the correct skill, so it should clearly state *what* the skill does and *when* to reach for it.
 {% endhint %}
 
-### Instructions
+## SKILL.md Body
 
-The operational guidance loaded into the agent's context. This is the most important section — it's effectively a system prompt extension. Write it precisely, because agents follow it literally.
+After the front matter, the body is plain markdown written **for the agent**. GDEX skills follow a consistent structure:
 
-Good instructions:
-- State preconditions ("user must be authenticated")
-- Define the happy path step-by-step
-- Cover error handling explicitly
-- Avoid ambiguity
+````markdown
+# GDEX: Spot Trading
 
-### Tools
+Buy and sell tokens across Solana, Sui, and 12+ EVM chains. The SDK routes
+through the best available DEX automatically, or you can specify one.
 
-Each tool the skill exposes must be documented with its name, parameters, types, required status, and a JSON call example. Tool names use `snake_case`.
+## When to Use
 
-### Examples
+- Buying a token with native currency (SOL, ETH, etc.)
+- Selling a token (absolute amount or percentage of holdings)
+- Executing managed-custody spot trades with encrypted payloads
 
-At least two examples: one happy path, one edge case. Examples help agents recognize when to invoke the skill and what correct usage looks like.
+## Prerequisites
 
-## Optional Sections
+- `@gdexsdk/gdex-skill` installed
+- Authenticated via `loginWithApiKey()` or managed-custody sign-in
+- See **gdex-authentication** for auth setup
 
-### Helpers Directory
+## Buy a Token
 
-Place executable helper scripts in a `helpers/` subdirectory. Agents can invoke these via shell tool calls. Common patterns:
-
-```
-helpers/
-├── buy.js          # Node.js — complex API logic, SDK calls
-├── parse.py        # Python — data processing, analysis
-└── setup.sh        # Shell — environment prep, checks
-```
-
-Helper scripts should be self-contained: accept inputs as CLI arguments, write results to stdout as JSON, and exit non-zero on error.
-
-### Context Directory
-
-Static reference files that the agent should load as background context:
-
-```
-context/
-├── api-reference.md    # Endpoints, parameter docs
-├── error-codes.md      # Error lookup table
-└── templates/          # Reusable output templates
-    └── report.md
+```typescript
+const trade = await skill.buyToken({
+  chain: 'solana',
+  tokenAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+  amount: '0.1',     // 0.1 SOL
+  slippage: 1,       // 1% max slippage
+});
+// Returns: { jobId, status, inputAmount, outputAmount, txHash?, error? }
 ```
 
-The agent loads context files at skill initialization. Keep them concise — large context files consume token budget.
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `chain` | string \| ChainId | Yes | `'solana'`, `'sui'`, or a ChainId number |
+| `tokenAddress` | string | Yes | Contract address of the token |
+| `amount` | string | Yes | Native token input amount |
+| `slippage` | number | No | Max slippage % (default: 1) |
+
+> **Critical:** notes that prevent common mistakes go in blockquotes.
+````
+
+### Recommended sections
+
+| Section | Purpose |
+|---------|---------|
+| **Title + intro** | One-line `# GDEX: <Name>` heading plus a short paragraph |
+| **When to Use** | Bullet list of the scenarios that should trigger the skill |
+| **Prerequisites** | Required install/auth state and cross-references to sibling skills |
+| **Method sections** | One per operation, each with a TypeScript example and a parameter table |
+| **Warnings / Critical notes** | Blockquotes that flag footguns (e.g. the Solana chainId, deterministic AES, delete-vs-toggle behavior) |
+
+Skills cross-reference each other by **name** in bold (e.g. *see **gdex-authentication***) so the agent knows which sibling skill to load next.
+
+## The `skill.json` Action Manifest
+
+Alongside the human-readable `SKILL.md` files, the package ships a machine-readable `skill.json` that the skills.sh CLI and MCP server use to expose callable actions. Each action declares a JSON-Schema parameter spec:
+
+```json
+{
+  "name": "@gdexsdk/gdex-skill",
+  "version": "1.0.0",
+  "description": "Cross-chain DeFi trading skill for AI agents…",
+  "homepage": "https://github.com/GemachDAO/gdex-skill",
+  "categories": ["finance", "trading", "defi", "crypto"],
+  "auth": {
+    "type": "computed_data",
+    "encryption": "AES-256-CBC",
+    "session_signing": "secp256k1"
+  },
+  "base_url": "https://trade-api.gemach.io/v1",
+  "actions": [
+    {
+      "name": "buy_token",
+      "description": "Buy a token on any supported chain using the best DEX route.",
+      "parameters": {
+        "type": "object",
+        "required": ["chain", "tokenAddress", "amount"],
+        "properties": {
+          "chain": { "type": ["string", "number"], "description": "Chain name or ChainId" },
+          "tokenAddress": { "type": "string", "description": "Token contract address" },
+          "amount": { "type": "string", "description": "Native token input amount" },
+          "slippage": { "type": "number", "description": "Max slippage % (default 1)" }
+        }
+      }
+    }
+  ]
+}
+```
+
+## Skill Grouping — `skills.sh.json`
+
+The `skills.sh.json` file controls how the skills are grouped and ordered when an agent browses or installs them:
+
+```json
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Trading",
+      "description": "Spot swaps, HyperLiquid perpetual futures, funding, and limit orders.",
+      "skills": ["gdex-spot-trading", "gdex-perp-trading", "gdex-perp-funding", "gdex-limit-orders"]
+    }
+  ]
+}
+```
 
 ## Naming Conventions
 
 | Rule | Example |
 |------|---------|
 | Directory and `name` field must match exactly | `gdex-spot-trading` / `name: gdex-spot-trading` |
-| Use `kebab-case` for all identifiers | `my-new-skill`, not `myNewSkill` |
-| Prefix GDEX-related skills with `gdex-` | `gdex-bridge`, `gdex-perp-trading` |
-| Prefix payment skills with the protocol name | `tempo-payment`, `x402-payment` |
-| Keep names short and descriptive | `summarize`, not `text-content-summarization-tool` |
+| Use `kebab-case` for all identifiers | `gdex-limit-orders`, not `gdexLimitOrders` |
+| Prefix GDEX skills with `gdex-` | `gdex-bridge`, `gdex-perp-trading` |
+| Prefix UI skills with `gdex-ui-` | `gdex-ui-trading-components` |
+| Keep names short and descriptive | `gdex-portfolio`, not `gdex-cross-chain-portfolio-balance-viewer` |
 
 ## Best Practices
 
-**Write instructions for the agent, not for humans.** The `Instructions` section is loaded directly into the agent's working context. Avoid prose explanations — use numbered steps, explicit conditions, and direct commands.
+**Write for the agent, not for humans.** The body is loaded directly into the agent's working context. Prefer concrete TypeScript examples and parameter tables over prose.
 
-**Keep tools focused.** Each tool should do one thing. A `buy_token` tool and a `sell_token` tool are better than a single `trade_token` tool with a `direction` parameter.
+**Show the exact method signature.** Every method section should include a runnable `skill.<method>()` example and the shape of the returned object.
 
-**Document every error code.** Agents need to know what to do when things go wrong. An undocumented error code causes the agent to stall or hallucinate a response.
+**Flag the footguns.** Use blockquotes for the non-obvious constraints that cause silent failures — the Solana chainId (`622112261`), deterministic AES (no random IV), and the fact that copy-trade `isDelete`/`isChangeStatus` both permanently delete.
 
-**Version your skills.** Increment the version in front matter when you change behavior. This helps agents and operators track which version of a skill is active.
-
-**Test with real prompts.** For each example in your `Examples` section, verify that a real agent actually produces the described behavior. Examples that don't match real behavior erode agent trust in the skill.
+**Keep one skill focused.** A `buy_token` and a `sell_token` action are better than a single `trade` action with a `direction` flag — this is why GDEX splits capability across 27 small skills.
 
 ---
 
 **See also:**
-- [✏️ Creating Custom Skills](creating-custom-skills.md) — step-by-step guide to building your first skill
-- [🧩 Agent Skills Overview](README.md) — the full skill catalog and loading priority
+- [✏️ Creating Custom Skills](creating-custom-skills.md) — build or extend a skill step by step
+- [🧩 Agent Skills Overview](README.md) — the full catalog and install options

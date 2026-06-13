@@ -1,503 +1,345 @@
 ---
-description: Deep dive on all 14 GDEX trading skills — capabilities, example prompts, supported chains, and the authentication flow
+description: Deep dive on the GDEX trading, copy-trading, and discovery skills — capabilities, real SDK method signatures, and the managed-custody auth flow
 ---
 
 # 📈 GDEX Trading Skills
 
-The 14 GDEX trading skills give any Gemach agent full-stack DeFi capability via the `@gdexsdk/gdex-skill` package. From simple spot buys to cross-chain bridging to perpetual futures with copy trading — these skills cover the complete trading lifecycle.
+The trading skills give any agent full-stack DeFi capability through the `@gdexsdk/gdex-skill` package — spot swaps, HyperLiquid perpetual futures, limit orders, copy trading, bridging, portfolio analytics, and token discovery. Every example below uses the actual SDK method names and parameters from [`GemachDAO/gdex-skill`](https://github.com/GemachDAO/gdex-skill).
 
 ## Supported Chains
 
-All GDEX trading skills operate across the following networks:
+| Chain | ChainId | Native Token |
+|-------|---------|--------------|
+| Ethereum | `1` | ETH |
+| Optimism | `10` | ETH |
+| BNB Smart Chain | `56` | BNB |
+| Sonic | `146` | S |
+| Fraxtal | `252` | frxETH |
+| Nibiru | `6900` | NIBI |
+| Base | `8453` | ETH |
+| Arbitrum One | `42161` | ETH |
+| Berachain | `80094` | BERA |
+| Solana | `622112261` | SOL |
+| Sui | `1313131213` | SUI |
+| HyperLiquid | perps only | USDC |
 
-| Chain | Chain ID |
-|-------|----------|
-| Solana | 622112261 |
-| Ethereum | 1 |
-| Base | 8453 |
-| Arbitrum | 42161 |
-| BNB Smart Chain | 56 |
-| Optimism | 10 |
-| Sui | (native) |
-| Sonic | (native) |
-| Berachain | (native) |
+{% hint style="warning" %}
+The Solana numeric chainId is **`622112261`** (`ChainId.SOLANA`), **not** `900`. Using `900` returns the EVM managed wallet with a `null` balance.
+{% endhint %}
 
-## Authentication Flow
+## Authentication
 
-Most trading skills require an active GDEX session before executing transactions. Authentication uses a **session key pair** model:
+### Shared API keys (recommended for agents)
+
+Two shared keys are pre-configured in the package, so agents can read data and submit managed trades without handling a user's private key:
+
+```typescript
+import { GdexSkill, GDEX_API_KEY_PRIMARY } from '@gdexsdk/gdex-skill';
+
+const skill = new GdexSkill();
+skill.loginWithApiKey(GDEX_API_KEY_PRIMARY);
+skill.isAuthenticated(); // → true
+```
+
+Read-only endpoints (`getTrendingTokens`, `getTokenDetails`, `getOHLCV`, `getTopTraders`) require **no** authentication.
+
+### Managed-custody session keys
+
+All trading runs through **server-side managed wallets**. The user's control wallet signs **once** (the sign-in message); on-chain execution is performed by GDEX backend trade workers. Write operations use a secp256k1 **session keypair** plus AES-256-CBC encrypted `computedData`:
 
 ```typescript
 import {
+  GdexSkill,
+  GDEX_API_KEY_PRIMARY,
   generateGdexSessionKeyPair,
   buildGdexSignInMessage,
   buildGdexSignInComputedData,
 } from '@gdexsdk/gdex-skill';
-import { ethers } from 'ethers';
 
-// 1. Generate a disposable session key pair
-const sessionKeyPair = generateGdexSessionKeyPair();
+const skill = new GdexSkill();
+skill.loginWithApiKey(GDEX_API_KEY_PRIMARY);
+const apiKey = GDEX_API_KEY_PRIMARY;
 
-// 2. Build the sign-in message with your wallet address
-const message = buildGdexSignInMessage({
-  walletAddress: '0xYourWalletAddress',
-  sessionPublicKey: sessionKeyPair.publicKey,
-});
+// 1. Generate a session keypair
+const { sessionPrivateKey, sessionKey } = generateGdexSessionKeyPair();
 
-// 3. Sign the message with your wallet
-const wallet = new ethers.Wallet(privateKey);
-const signature = await wallet.signMessage(message);
+// 2. The control wallet signs the sign-in message (EIP-191 personal_sign)
+const userId = '0xYourControlWallet';
+const nonce = String(Math.floor(Date.now() / 1000) + Math.floor(Math.random() * 1000));
+const message = buildGdexSignInMessage(userId, nonce, sessionKey);
+const signature = /* wallet.signMessage(message) */ '';
 
-// 4. Build computed authentication data
-const computedData = buildGdexSignInComputedData({
-  message,
-  signature,
-  sessionKeyPair,
-});
+// 3. Submit the encrypted sign-in payload
+const signIn = buildGdexSignInComputedData({ apiKey, userId, sessionKey, nonce, signature });
+await skill.signInWithComputedData({ computedData: signIn.computedData, chainId: 622112261 });
 ```
 
-The session key pair is ephemeral — it authorizes the agent to act on behalf of your wallet for the duration of the session without exposing your private key.
+{% hint style="info" %}
+The encryption is **deterministic** AES-256-CBC: the key/IV are derived from `SHA256(apiKey)` — never use a random IV or the `iv:ciphertext` format. Sign-in is the only operation that uses EIP-191; all post-sign-in operations sign with the raw `keccak256` + secp256k1 session key (`v` = raw recovery param `00`/`01`). The **gdex-authentication** skill documents every helper.
+{% endhint %}
 
 ---
 
 ## Skill Reference
 
-### `gdex-authentication`
-
-**Purpose:** Manage the full GDEX authentication lifecycle — generating session key pairs, constructing sign-in messages, and maintaining session state.
-
-**Key capabilities:**
-- Generate session key pairs for wallet-delegated signing
-- Build and sign GDEX authentication messages
-- Refresh expired sessions automatically
-- Store session state securely for use by other skills
-
-**Example prompts:**
-```
-"Authenticate my wallet 0x1234...abcd with GDEX."
-"My session expired — re-authenticate and retry the trade."
-"Set up GDEX auth using my Solana wallet."
-```
-
-**Prerequisite for:** All transaction-executing skills (`gdex-spot-trading`, `gdex-perp-trading`, `gdex-bridge`, etc.)
-
----
-
-### `gdex-wallet-setup`
-
-**Purpose:** Configure and register wallets for use across all GDEX trading skills.
-
-**Key capabilities:**
-- Register EVM wallets (MetaMask, hardware wallets, raw private keys)
-- Register Solana wallets (Phantom, raw keypairs)
-- Set a default wallet for agent-initiated transactions
-- Validate wallet connectivity and balance checks
-
-**Example prompts:**
-```
-"Set up my Base wallet ending in 0xABCD for GDEX trading."
-"Add my Solana wallet and make it the default."
-"Check that my wallet is properly configured for GDEX."
-```
-
----
-
-### `gdex-onboarding`
-
-**Purpose:** Guide first-time users through the complete GDEX setup process.
-
-**Key capabilities:**
-- Walk through wallet creation or import
-- Set up GDEX API key configuration
-- Fund wallet with Apple Pay, bank transfer, or on-chain deposit
-- Verify end-to-end connectivity before first trade
-
-**MCP Tools exposed (available to IDE agents via MCP):**
-
-| Tool | Description |
-|------|-------------|
-| `search_gdex_docs` | Search GDEX documentation for any topic |
-| `get_sdk_pattern` | Retrieve TypeScript code patterns for SDK operations |
-| `get_api_info` | Look up API endpoint details and parameters |
-| `explain_workflow` | Get step-by-step explanations of GDEX workflows |
-| `get_chain_info` | Retrieve chain IDs, RPC endpoints, and network details |
-| `get_trading_guide` | Spot and limit order trading guidance |
-| `get_copy_trade_guide` | Copy trading setup and configuration |
-| `get_component_guide` | SDK component usage and integration patterns |
-
-**Example prompts:**
-```
-"I'm new to GDEX — walk me through getting set up."
-"Help me onboard and make my first trade."
-"What do I need before I can start trading?"
-```
-
----
-
 ### `gdex-spot-trading`
 
-**Purpose:** Execute spot buy and sell orders across all supported chains.
-
-**Key capabilities:**
-- Market buys and sells for any token by address or symbol
-- Configurable slippage tolerance
-- Multi-chain support (Solana, Ethereum, Base, BNB Chain, Arbitrum, Optimism, and more)
-- Transaction confirmation with receipt parsing
-
-**Core SDK functions:**
+Buy and sell tokens across Solana, Sui, and EVM chains with automatic DEX routing.
 
 ```typescript
-import { buyToken, sellToken } from '@gdexsdk/gdex-skill';
-
-// Buy 0.1 SOL worth of a token
-const buyResult = await buyToken({
-  chainId: 622112261,           // Solana
-  tokenAddress: 'mint-address',
-  amountInSol: 0.1,
-  slippageBps: 100,             // 1% slippage
-  sessionKeyPair,
+// Buy with native token (0.1 SOL)
+const trade = await skill.buyToken({
+  chain: 'solana',
+  tokenAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', // USDC
+  amount: '0.1',
+  slippage: 1,        // optional, default 1%
+  dex: 'raydium',     // optional: force a DEX
 });
+// → { jobId, status, inputAmount, outputAmount, txHash?, error? }
 
-// Sell 50% of a token holding
-const sellResult = await sellToken({
-  chainId: 622112261,
-  tokenAddress: 'mint-address',
-  percentageToSell: 50,
-  slippageBps: 150,
-  sessionKeyPair,
-});
+// Sell an absolute amount
+await skill.sellToken({ chain: 8453, tokenAddress: '0x...', amount: '100', slippage: 0.5 });
+
+// Sell a percentage of holdings
+await skill.sellToken({ chain: 'solana', tokenAddress: '...', amount: '50%' });
 ```
 
-**Example prompts:**
-```
-"Buy $50 worth of BONK on Solana."
-"Sell 25% of my ETH position on Base."
-"Buy 0.01 ETH of ARB token on Arbitrum."
-```
-
----
-
-### `gdex-limit-orders`
-
-**Purpose:** Place limit buy and sell orders with optional take-profit and stop-loss automation.
-
-**Key capabilities:**
-- Set entry price for automated buy execution
-- Set exit price with take-profit targets
-- Trailing stop-loss configuration
-- View and cancel open orders
-
-**Core SDK functions:**
-
-```typescript
-import { limitBuy, limitSell } from '@gdexsdk/gdex-skill';
-
-// Place a limit buy at 10% below current price
-const order = await limitBuy({
-  chainId: 8453,                 // Base
-  tokenAddress: '0xtoken...',
-  amountUsd: 100,
-  limitPriceUsd: 1.80,
-  sessionKeyPair,
-});
-
-// Place a limit sell with take-profit
-const sellOrder = await limitSell({
-  chainId: 8453,
-  tokenAddress: '0xtoken...',
-  percentageToSell: 100,
-  limitPriceUsd: 2.50,
-  sessionKeyPair,
-});
-```
-
-**Example prompts:**
-```
-"Set a limit buy for 100 USDC of TOKEN at $1.80."
-"Place a take-profit sell order at $2.50 for my full position."
-"Show me all my open limit orders."
-"Cancel the limit buy I set earlier."
-```
-
----
-
-### `gdex-token-discovery`
-
-**Purpose:** Find trending, new, and high-potential tokens with security and volume analysis.
-
-**Key capabilities:**
-- Scan trending tokens across all supported chains
-- Filter by minimum security score, volume threshold, and holder count
-- Get token metadata: market cap, 24h volume, holder distribution, contract audit status
-- Identify newly launched tokens in configurable time windows
-
-**Core SDK functions:**
-
-```typescript
-import { getTrendingTokens, getNewTokens, getTokenInfo } from '@gdexsdk/gdex-skill';
-
-// Get top 10 trending tokens on Base with at least 70% security score
-const trending = await getTrendingTokens({
-  chainId: 8453,
-  limit: 10,
-  minSecurityScore: 70,
-});
-
-// Get tokens launched in the last 24 hours on Solana
-const newTokens = await getNewTokens({
-  chainId: 622112261,
-  hoursAgo: 24,
-  minVolume: 10000,
-});
-```
-
-**Example prompts:**
-```
-"What are the top trending tokens on Solana right now?"
-"Find new tokens launched today on Base with at least $50k volume."
-"Give me a security analysis of token address 0x1234..."
-"What tokens are trending across all chains?"
-```
-
----
-
-### `gdex-portfolio`
-
-**Purpose:** Track holdings, aggregate balances, and calculate P&L across all wallets and chains.
-
-**Key capabilities:**
-- Aggregate token balances across multiple wallets and chains
-- Real-time USD value calculation
-- P&L tracking with cost-basis history
-- Exportable portfolio snapshots
-- Alert thresholds for significant value changes
-
-**Example prompts:**
-```
-"Show me my full portfolio across all chains."
-"What's my total P&L this week?"
-"How much is my Solana wallet worth in USD?"
-"Alert me if my portfolio drops more than 10% in a day."
-```
-
----
-
-### `gdex-bridge`
-
-**Purpose:** Transfer assets cross-chain between any supported GDEX network.
-
-**Key capabilities:**
-- Estimate bridge fees and time before committing
-- Execute bridge transactions with status tracking
-- Support for all major bridge routes (Solana ↔ EVM, EVM ↔ EVM)
-- Transaction receipt parsing with destination chain confirmation
-
-**Core SDK functions:**
-
-```typescript
-import { estimateBridge, requestBridge } from '@gdexsdk/gdex-skill';
-
-// Estimate cost before bridging
-const estimate = await estimateBridge({
-  fromChainId: 1,               // Ethereum
-  toChainId: 8453,              // Base
-  tokenAddress: '0xusdc...',
-  amount: '100000000',          // 100 USDC (6 decimals)
-  sessionKeyPair,
-});
-// Returns: BridgeEstimate { fee: string, estimatedTimeSeconds: number, route: string }
-
-// Execute the bridge
-const bridgeResult = await requestBridge({
-  fromChainId: 1,
-  toChainId: 8453,
-  tokenAddress: '0xusdc...',
-  amount: '100000000',
-  destinationAddress: '0xReceiver...',
-  sessionKeyPair,
-});
-// Returns: BridgeResult { txHash: string, orderId: string, status: string }
-```
-
-**Bridge response types:**
-
-```typescript
-interface BridgeEstimate {
-  fee: string;                  // Fee in source token
-  feeUsd: string;               // Fee in USD
-  estimatedTimeSeconds: number;
-  route: string;                // Bridge protocol used
-  minimumReceived: string;
-}
-
-interface BridgeResult {
-  txHash: string;
-  orderId: string;
-  status: 'pending' | 'processing' | 'complete' | 'failed';
-  destinationTxHash?: string;
-}
-```
-
-**Example prompts:**
-```
-"Bridge 100 USDC from Ethereum to Base."
-"How much does it cost to bridge 0.5 ETH to Arbitrum?"
-"Transfer all my USDC from Base to Solana."
-"What's the status of my bridge transaction 0xabc...?"
-```
+**Example prompts:** "Buy 0.1 SOL of USDC", "Sell 50% of my BONK", "Buy $50 of ARB on Arbitrum".
 
 ---
 
 ### `gdex-perp-trading`
 
-**Purpose:** Open, manage, and close leveraged perpetual futures positions on HyperLiquid.
+HyperLiquid perpetual futures — open/close positions, set leverage, place market and limit orders with TP/SL.
 
-**Key capabilities:**
-- Market and limit entry for long/short positions
-- Leverage configuration (1x–50x depending on asset)
-- Position management: add margin, partial close, full close
-- Real-time P&L and liquidation price monitoring
+```typescript
+// Open a 10x BTC long with TP/SL
+const pos = await skill.openPerpPosition({
+  coin: 'BTC',
+  side: 'long',
+  sizeUsd: '1000',
+  leverage: 10,
+  takeProfitPrice: '110000',
+  stopLossPrice: '95000',
+  marginMode: 'cross',   // 'cross' (default) | 'isolated'
+});
 
-**Example prompts:**
+await skill.closePerpPosition({ coin: 'BTC' });                   // close 100%
+await skill.closePerpPosition({ coin: 'ETH', closePercent: 50 }); // close 50%
+await skill.setPerpLeverage({ coin: 'BTC', leverage: 20 });
+
+const positions = await skill.getPerpPositions({ walletAddress: '0x...' });
 ```
-"Open a 5x long on ETH-PERP with $200."
-"Close half my BTC short position."
-"What are my current open perp positions?"
-"Set a stop-loss on my SOL-PERP long at $150."
-```
+
+**Example prompts:** "Open a 5x long on ETH with $200", "Close half my BTC short", "Set BTC leverage to 20x".
 
 ---
 
 ### `gdex-perp-funding`
 
-**Purpose:** Monitor and manage perpetual funding rate exposure across all open positions.
+Deposit and withdraw USDC to/from HyperLiquid (human-readable amounts, converted internally; 10 USDC minimum deposit).
 
-**Key capabilities:**
-- Real-time funding rate monitoring for all open positions
-- Funding rate history and trend analysis
-- Alert on high funding rate conditions
-- Automatic position flip when funding becomes severely negative
+```typescript
+await skill.perpDeposit({ amount: '10' });  // deposit 10 USDC
+await skill.perpWithdraw({ amount: '5' });   // withdraw 5 USDC
+```
 
-**Example prompts:**
+**Example prompts:** "Deposit 25 USDC to HyperLiquid", "Withdraw 10 USDC from my perp account".
+
+---
+
+### `gdex-limit-orders`
+
+Create, update/delete, and list limit orders via managed-custody encrypted payloads. Endpoints are `limit_buy` / `limit_sell` / `update_order` / `orders`.
+
+```typescript
+// Limit buy with optional TP/SL
+await skill.limitBuy({
+  apiKey: GDEX_API_KEY_PRIMARY,
+  userId: '0xControlWallet',
+  sessionPrivateKey,
+  chainId: 622112261,
+  tokenAddress: 'EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm',
+  amount: '10000000',        // lamports
+  triggerPrice: '0.50',
+  profitPercent: '50',       // optional TP
+  lossPercent: '25',         // optional SL
+});
+
+// Delete an order (isDelete: true)
+await skill.updateOrder({
+  apiKey: GDEX_API_KEY_PRIMARY, userId: '0xControlWallet', sessionPrivateKey,
+  chainId: 622112261, orderId: '<64-hex>', isDelete: true,
+});
+
+// List active orders (session-key auth)
+const { count, orders } = await skill.getLimitOrders({ userId, data: encryptedSessionKey, chainId: 622112261 });
 ```
-"What's the current funding rate on my ETH-PERP long?"
-"Alert me if funding on any position exceeds 0.05%."
-"Show me funding rates across all perpetual markets."
-```
+
+**Example prompts:** "Buy TOKEN when it drops to $0.50", "Set a take-profit sell at $999", "Cancel my open limit order".
 
 ---
 
 ### `gdex-copy-trading`
 
-**Purpose:** Mirror the spot trading activity of identified high-performing wallets.
+Discover top wallets and create/manage **Solana** copy trades. Discovery is read-only; writes are Solana-only and sign in with `chainId: 622112261`.
 
-**Key capabilities:**
-- Search for and evaluate top-performing wallets by win rate and P&L
-- Configure copy parameters: position size scaling, token allowlist/blocklist
-- Monitor copy performance vs. source wallet
-- Pause or stop copying individual traders
+```typescript
+// Discovery (no auth)
+const topWallets = await skill.getCopyTradeWallets();      // top 300 by total PnL
+const gems = await skill.getCopyTradeGems();               // hot new tokens from top wallets
 
-**Example prompts:**
+// Create a copy trade (computedData auth)
+await skill.createCopyTrade({
+  apiKey: GDEX_API_KEY_PRIMARY,
+  userId: controlWalletAddress,
+  sessionPrivateKey,
+  chainId: 622112261,
+  traderWallet: 'SolanaTraderAddress',
+  copyTradeName: 'Alpha Trader',
+  buyMode: 1,                 // 1 = fixed SOL, 2 = percentage
+  copyBuyAmount: '0.001',
+  lossPercent: '50',
+  profitPercent: '100',
+  copySell: true,
+});
 ```
-"Find the top 5 wallets by win rate on Solana this month."
-"Copy trade wallet 0xLeader... with 10% of their position sizes."
-"Show me how my copy trade performance compares to the source wallet."
-"Stop copying 0xTrader... but keep the existing positions."
-```
+
+{% hint style="warning" %}
+There is no pause/toggle on the backend — both `isDelete: true` and `isChangeStatus: true` **permanently delete** a copy trade.
+{% endhint %}
+
+**Example prompts:** "Show the top Solana wallets by PnL", "Copy 0xLeader with 0.001 SOL per trade", "Delete my Alpha Trader copy trade".
 
 ---
 
 ### `gdex-perp-copy-trading`
 
-**Purpose:** Mirror the perpetual futures strategies of top HyperLiquid traders.
+Copy HyperLiquid perpetual-futures traders. Completely separate from Solana copy trading; sign-in uses `chainId: 1` and all ABI fields are strings.
 
-**Key capabilities:**
-- Identify top HyperLiquid traders by ROI and Sharpe ratio
-- Copy both entries and exits with configurable lag
-- Risk management: max position size, max leverage override
-- Independent pause/stop per copied trader
+```typescript
+// Discovery (no auth)
+const topByVolume = await skill.getHlTopTraders('volume');
+const topByPnl = await skill.getHlTopTradersByPnl();
+const stats = await skill.getHlUserStats('0xManagedWalletAddress'); // managed wallet, not control
 
-**Example prompts:**
+// Create an HL copy trade (computedData auth)
+await skill.createHlCopyTrade({
+  apiKey, userId: controlWalletAddress, sessionPrivateKey,
+  traderWallet: '0xTraderEvmAddress',
+  copyTradeName: 'BTC Whale',
+  copyMode: 1,                       // 1 = fixed USD, 2 = proportion
+  fixedAmountCostPerOrder: '50',
+  lossPercent: '25',                 // mandatory, 0 < x < 100
+  profitPercent: '100',              // mandatory, > 0
+  oppositeCopy: false,               // true = copy the opposite direction
+});
 ```
-"Who are the top-performing perp traders on HyperLiquid this week?"
-"Copy trade 0xPerpTrader... on HyperLiquid perps with 50% size scaling."
-"What's the P&L on my perp copy trades this month?"
-```
+
+**Example prompts:** "Who are the top HyperLiquid traders this week?", "Copy 0xWhale's perps at $50 per order", "Copy 0xTrader but inverted".
 
 ---
 
-### `gdex-trading`
+### `gdex-bridge`
 
-**Purpose:** High-level trading orchestration skill that coordinates other trading skills for complex, multi-step strategies.
+Cross-chain bridging of native tokens between EVM chains, Solana, and Sui (via ChangeNow). Always quote first, then execute.
 
-**Key capabilities:**
-- Execute compound strategies that span multiple skills (e.g., discover → analyze → buy → set limit sell)
-- Manage strategy state across multiple trades
-- Schedule and automate recurring trading actions
-- Aggregate results from multiple trading sub-skills into unified reports
+```typescript
+import { ChainId } from '@gdexsdk/gdex-skill';
 
-**Example prompts:**
+const quote = await skill.getBridgeQuote({
+  fromChain: 'solana',
+  toChain: ChainId.ETHEREUM,
+  tokenAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+  amount: '100',
+});
+console.log(quote.outputAmount, quote.feeUsd);
+
+const result = await skill.bridge({
+  fromChain: 'solana',
+  toChain: ChainId.ETHEREUM,
+  tokenAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+  amount: '100',
+  destinationAddress: '0xYourEthAddress',
+  slippage: 0.5,
+});
 ```
-"Find trending tokens on Solana, buy the top 3, and set 2x take-profit sells."
-"Every hour, check my portfolio and rebalance if any position exceeds 30%."
-"Run my momentum strategy: buy tokens up 20% in 4 hours with volume > $100k."
-```
+
+**Example prompts:** "Bridge 100 USDC from Solana to Ethereum", "What does it cost to bridge 0.5 ETH to Arbitrum?".
 
 ---
 
-### `gdex-sdk-debugging`
+### `gdex-portfolio`
 
-**Purpose:** Diagnose and resolve GDEX SDK integration issues, failed transactions, and API errors.
+Cross-chain portfolio overview, chain-specific balances, and paginated trade history.
 
-**Key capabilities:**
-- Decode GDEX SDK error codes with plain-language explanations
-- Trace failed transaction causes (insufficient balance, slippage, RPC error, etc.)
-- Check API connectivity and rate limit status
-- Suggest fixes for common integration issues
+```typescript
+import { ChainId } from '@gdexsdk/gdex-skill';
 
-**Example prompts:**
+const portfolio = await skill.getPortfolio({ walletAddress: '0x...' });
+// → { totalValueUsd, balances, perpPositions?, realizedPnl, unrealizedPnl }
+
+const balances = await skill.getBalances({ walletAddress: '0x...', chain: ChainId.ETHEREUM });
+
+const history = await skill.getTradeHistory({ walletAddress: '0x...', page: 1, limit: 20 });
 ```
-"My buy transaction failed with ERR_SLIPPAGE — what should I do?"
-"Debug why my bridge transaction is stuck in 'pending'."
-"The SDK is throwing a 401 — help me fix my auth."
-```
+
+**Example prompts:** "Show my portfolio across all chains", "What's my ETH balance on Base?", "List my last 20 trades".
 
 ---
 
-## How Skills Interact with the GDEX SDK
+### `gdex-token-discovery`
 
-Each GDEX trading skill wraps the `@gdexsdk/gdex-skill` npm package. The SDK provides TypeScript functions that the skill's helper scripts invoke; the skill's `SKILL.md` instructions tell the agent when and how to call those helpers.
+Token details, trending tokens, OHLCV candles, and top traders.
 
-The interaction chain:
+```typescript
+const token = await skill.getTokenDetails({ tokenAddress: '...', chain: 'solana' });
+// → { symbol, name, priceUsd, priceChange24h, marketCap, fdv, volume24h, liquidity }
 
-```
-Agent receives user prompt
-       ↓
-Skill instructions loaded into context
-       ↓
-Agent identifies appropriate tool
-       ↓
-Tool calls helper script (Node.js / shell)
-       ↓
-Helper script calls @gdexsdk/gdex-skill
-       ↓
-SDK executes on-chain transaction
-       ↓
-Helper returns JSON result to agent
-       ↓
-Agent formats response for user
+const trending = await skill.getTrendingTokens({ chain: 'solana', period: '24h', limit: 20, minLiquidity: 50000 });
+
+const ohlcv = await skill.getOHLCV({
+  tokenAddress: 'So11111111111111111111111111111111111111112',
+  chain: 'solana',
+  resolution: '60', // '1'|'5'|'15'|'30'|'60'|'240'|'D'|'W'
+  from: Math.floor(Date.now() / 1000) - 86400,
+  to: Math.floor(Date.now() / 1000),
+});
+
+const traders = await skill.getTopTraders({ chain: 'solana', period: '7d', limit: 10, sortBy: 'pnl' });
 ```
 
-Installing the SDK:
+**Example prompts:** "What's trending on Solana?", "Get the 1h candles for SOL", "Show the top traders this week".
 
-```bash
-npm install @gdexsdk/gdex-skill
-# or
-yarn add @gdexsdk/gdex-skill
+---
+
+### `gdex-livestream-discovery`
+
+Solana livestream-token discovery — currently-live streams, per-token live status, and big-buy alert feeds. Useful for surfacing tokens with active community livestreams before momentum trades.
+
+**Example prompts:** "Which Solana tokens are livestreaming right now?", "Is this token live?", "Show me the big-buy alert feed".
+
+---
+
+## Error Handling
+
+The SDK throws typed errors so agents can recover gracefully:
+
+```typescript
+import {
+  GdexAuthError,        // 401/403 — re-authenticate
+  GdexValidationError,  // invalid params (.field)
+  GdexApiError,         // 4xx/5xx (.statusCode)
+  GdexNetworkError,     // connection failures, timeouts
+  GdexRateLimitError,   // 429 — has .retryAfter (seconds)
+} from '@gdexsdk/gdex-skill';
 ```
+
+When something goes wrong, hand off to **gdex-sdk-debugging**, which maps error codes, encryption issues, and chain-specific gotchas to fixes.
 
 ---
 
 **See also:**
-- [🛠️ Utility Skills](utility-skills.md) — the 8 non-trading skills
+- [🛠️ Platform & UI Skills](utility-skills.md) — onboarding, transfers, social, HyperLiquid extras, React UI, and debugging
 - [✏️ Creating Custom Skills](creating-custom-skills.md) — build your own trading skill
-- [🧩 Agent Skills Overview](README.md) — the complete skill catalog
+- [🧩 Agent Skills Overview](README.md) — the complete catalog and install options

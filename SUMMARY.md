@@ -59,7 +59,7 @@
   * [SKILL.md Format Reference](products/agent-skills/skill-format.md)
   * [Creating Custom Skills](products/agent-skills/creating-custom-skills.md)
   * [GDEX Trading Skills](products/agent-skills/gdex-trading-skills.md)
-  * [Utility Skills](products/agent-skills/utility-skills.md)
+  * [Platform & UI Skills](products/agent-skills/utility-skills.md)
 * [🧮 GLend](products/glend/README.md)
   * [⏩ Supply](products/glend/supply.md)
   * [◀️ Borrow](products/glend/borrow.md)
