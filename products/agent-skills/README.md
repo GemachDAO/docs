@@ -1,116 +1,196 @@
 ---
-description: Modular instruction sets that teach AI agents new capabilities — works with any agent in the Gemach ecosystem
+description: Modular SKILL.md packages that teach AI agents to trade, manage portfolios, and build UIs on GDEX — installable into Claude Code, Cursor, Codex, Windsurf, and 40+ other agents
 ---
 
 # 🧩 Agent Skills
 
 {% hint style="success" %}
-Agent Skills are the building blocks of the Gemach agent ecosystem. Every capability an agent has — trading on-chain, bridging assets, managing payments, monitoring hardware — is delivered by a skill. And because skills are just markdown files, anyone can read, write, and share them.
+Agent Skills are the building blocks of the Gemach agent ecosystem. Every capability an agent has — spot trading, perpetual futures, copy trading, bridging, portfolio analytics, even generating a React trading UI — is delivered by a skill. Because skills are just markdown files, anyone can read, audit, and extend them.
 {% endhint %}
+
+The reference implementation is the open-source [`GemachDAO/gdex-skill`](https://github.com/GemachDAO/gdex-skill) package (`@gdexsdk/gdex-skill`). It ships **27 skills**, a **116-tool MCP server**, and a fully-typed **TypeScript SDK** that talk to the GDEX / Gbot trading backend.
 
 ## What Are Agent Skills?
 
-Agent Skills are modular capability packages defined by `SKILL.md` files. A `SKILL.md` is a structured markdown document that describes a discrete capability: what the skill does, what tools it exposes, how the agent should invoke those tools, and example prompts that exercise it.
+A skill is a directory containing a `SKILL.md` file — a structured markdown document that tells an AI agent what a capability does, when to use it, and exactly which SDK calls or API endpoints to invoke. Skills are **not** compiled plugins or binaries; they are human-readable, version-controllable instructions that any agent can load and follow.
 
-Skills are **not** compiled plugins or binary extensions. They are human-readable, version-controllable markdown files that any AI agent can load and follow. This design makes skills:
+This design makes skills:
 
 - **Auditable** — anyone can read exactly what an agent is instructed to do
-- **Composable** — combine multiple skills to build complex, multi-step workflows
-- **Shareable** — drop a `SKILL.md` file into any git repo and it's instantly available
+- **Composable** — combine multiple skills to build multi-step workflows
+- **Shareable** — published on GitHub and installed with a single command
 - **Agent-native** — written for autonomous agents, not human UIs
+- **Lean** — GDEX uses a **multi-skill architecture**, so an agent loads only the skills it needs and keeps its context window focused
 
-Gemach ships **22 built-in skills** organized into two categories: GDEX Trading Skills and Utility Skills. These are available in every agent out of the box.
+## Three Ways to Use GDEX Skills
 
-## How Skills Are Loaded
+| Method | Best for | Entry point |
+|--------|----------|-------------|
+| **Skills CLI (skills.sh)** | Agents that read `SKILL.md` files directly (Claude Code, Cursor, Codex, Windsurf, +40 more) | `npx skills add GemachDAO/gdex-skill` |
+| **MCP Server** | Any [Model Context Protocol](https://modelcontextprotocol.io) client — exposes 116 callable trading + docs tools | `npx @gdexsdk/mcp-server` |
+| **TypeScript SDK** | Building your own agent, bot, or app in code | `npm install github:GemachDAO/gdex-skill` |
 
-Skills follow a **three-tier loading priority**:
+### 1. Install as Agent Skills
 
+Install directly into any [supported agent](https://github.com/vercel-labs/skills#supported-agents) using the [skills CLI](https://skills.sh):
+
+```bash
+# Install all skills (recommended)
+npx skills add GemachDAO/gdex-skill --all --agent '*' -g
+
+# Install just the root routing skill
+npx skills add GemachDAO/gdex-skill
+
+# Install a single skill
+npx skills add GemachDAO/gdex-skill --skill gdex-spot-trading
 ```
-workspace skills  (highest priority)
-       ↓
-global skills
-       ↓
-built-in skills   (lowest priority / fallback)
+
+The root skill acts as a **router** — it tells the agent which sub-skill to load for any given task. **No API key setup is required**; shared keys are built in for read access and managed-custody trading.
+
+### 2. Run the MCP Server
+
+The GDEX MCP server exposes **116 tools** (108 execution + 8 documentation) so any MCP-compatible agent can trade autonomously:
+
+```bash
+# Auto-generate config for your client
+npx @gdexsdk/mcp-server init --client claude   # → .mcp.json
+npx @gdexsdk/mcp-server init --client cursor   # → .cursor/mcp.json
+npx @gdexsdk/mcp-server init --client vscode   # → .vscode/mcp.json
+npx @gdexsdk/mcp-server init --client codex    # → .codex/config.toml
+npx @gdexsdk/mcp-server init --client opencode # → .opencode/mcp.json
 ```
 
-| Tier | Location | Purpose |
-|------|----------|---------|
-| **Workspace** | `./workspace/skills/<skill-name>/SKILL.md` | Project-specific overrides — highest priority |
-| **Global** | `~/.gclaw/skills/<skill-name>/SKILL.md` | User-level skills shared across all agents |
-| **Built-in** | Bundled with the agent binary | Default skills that ship with every install |
+### 3. Use the SDK in Code
 
-If a skill with the same name exists at multiple tiers, the highest-priority version wins. This lets you override a built-in skill's behavior for a specific project without modifying global configuration.
+```bash
+npm install github:GemachDAO/gdex-skill
+```
 
-## Full Skill Catalog
+```typescript
+import { GdexSkill, GDEX_API_KEY_PRIMARY } from '@gdexsdk/gdex-skill';
 
-### GDEX Trading Skills (14)
+const skill = new GdexSkill();
+skill.loginWithApiKey(GDEX_API_KEY_PRIMARY);   // shared key — no wallet needed
 
-These skills give agents deep integration with the GDEX SDK for multi-chain DeFi operations.
+const trending = await skill.getTrendingTokens({ chain: 'solana', period: '24h', limit: 5 });
+```
 
-| Skill | Directory | Description |
-|-------|-----------|-------------|
-| Spot Trading | `gdex-spot-trading` | Buy and sell tokens on Solana, Ethereum, Base, BNB Chain, Arbitrum, and more |
-| Perpetual Trading | `gdex-perp-trading` | Open, manage, and close leveraged long/short positions on HyperLiquid |
-| Copy Trading | `gdex-copy-trading` | Mirror the spot trades of top-performing wallets automatically |
-| Perp Copy Trading | `gdex-perp-copy-trading` | Copy perpetual futures strategies from high-performing HyperLiquid traders |
-| Perp Funding | `gdex-perp-funding` | Monitor and manage perpetual funding rate exposure on open positions |
-| Limit Orders | `gdex-limit-orders` | Place limit buy/sell orders with take-profit and stop-loss automation |
-| Bridge | `gdex-bridge` | Transfer assets cross-chain between all supported GDEX networks |
-| Token Discovery | `gdex-token-discovery` | Scan for trending and newly launched tokens with security scoring |
-| Portfolio | `gdex-portfolio` | Track holdings, balances, and P&L across all wallets and chains |
-| Authentication | `gdex-authentication` | Manage GDEX session key pair auth — sign-in messages, computed data |
-| Wallet Setup | `gdex-wallet-setup` | Configure and manage GDEX-compatible wallets for agent use |
-| Onboarding | `gdex-onboarding` | First-time GDEX setup wizard for API keys and wallet connections |
-| SDK Debugging | `gdex-sdk-debugging` | Diagnose and fix GDEX SDK errors, failed transactions, API issues |
-| Trading (General) | `gdex-trading` | High-level orchestration skill that coordinates other trading skills |
+## Full Skill Catalog (27 skills)
 
-### Utility Skills (8)
+Skills are grouped exactly as they are in the package's [`skills.sh.json`](https://github.com/GemachDAO/gdex-skill/blob/main/skills.sh.json) manifest.
 
-These skills extend agents beyond trading into a broader range of autonomous capabilities.
+### Getting Started
 
-| Skill | Directory | Description |
-|-------|-----------|-------------|
-| Skill Creator | `skill-creator` | Create new custom skills — describe a capability and the agent scaffolds the SKILL.md |
-| GitHub | `github` | Create issues, comment on PRs, push files, and manage repositories |
-| Summarize | `summarize` | Condense documents, trade logs, market reports, or conversations |
-| Hardware | `hardware` | Monitor CPU, memory, temperature, and storage; trigger alerts on thresholds |
-| Weather | `weather` | Fetch current conditions and forecasts for use in multi-agent workflows |
-| Tmux | `tmux` | Spawn and manage tmux sessions for running multiple agent processes |
-| Tempo Payment | `tempo-payment` | Handle Tempo protocol payment flows in agent-executed transactions |
-| x402 Payment | `x402-payment` | Process x402 micropayment flows so agents can pay for external APIs autonomously |
+| Skill | Description |
+|-------|-------------|
+| `gdex-onboarding` | Start here — GDEX overview, architecture, supported chains, available skills, and quickstart |
+| `gdex-authentication` | Managed-custody auth — shared API key login, session keypairs, AES-256-CBC `computedData`, secp256k1 signing |
+| `gdex-wallet-setup` | Generate EVM control wallets offline, create session keypairs, fetch wallet info (no auth) |
+
+### Trading
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-spot-trading` | Buy/sell tokens on Solana, Sui, and EVM chains with automatic DEX routing, slippage control, and percentage sells |
+| `gdex-perp-trading` | HyperLiquid perpetual futures — open/close positions, set leverage, market/limit orders with TP/SL |
+| `gdex-perp-funding` | Deposit and withdraw USDC to/from HyperLiquid for perpetual trading |
+| `gdex-limit-orders` | Create, update/delete, and list limit orders via managed-custody encrypted payloads |
+
+### Data & Discovery
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-portfolio` | Cross-chain portfolio overview, chain-specific balances, and paginated trade history |
+| `gdex-token-discovery` | Token details, trending tokens, OHLCV candles, and top traders |
+| `gdex-livestream-discovery` | Solana livestream-token discovery — live streams, per-token live status, and big-buy alert feeds |
+
+### Copy Trading & Bridge
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-copy-trading` | Discover top wallets and create/manage Solana copy trades (Solana only for writes) |
+| `gdex-perp-copy-trading` | Copy HyperLiquid perp traders — top traders, configs, fill history, opposite-direction copying |
+| `gdex-bridge` | Cross-chain bridging of native tokens between EVM chains, Solana, and Sui via ChangeNow |
+
+### Transfers & Social
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-transfers` | Native and ERC-20/SPL token transfers via managed custody to any recipient |
+| `gdex-watchlist-social` | Watchlist, comments, and sentiment voting — social features around individual tokens |
+| `gdex-token-import` | Import user-defined custom tokens so they appear in details, balances, and portfolio |
+
+### HyperLiquid Extras
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-hl-outcomes` | HyperLiquid HIP-3 outcome / event (prediction) markets — list, order, and manage outcome positions |
+| `gdex-hl-referral` | HyperLiquid referral info and reward claims |
+
+### Promotion & Partners
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-trending-promotion` | Paid trending-slot promotion — book featured slots and check booking status |
+| `gdex-retailer-onboarding` | Retailer partner integrations that white-label the GDEX trading stack |
+
+### Frontend (React / Next.js)
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-ui-install-setup` | React/Next.js project setup — SDK init, context providers, env vars, TypeScript config |
+| `gdex-ui-trading-components` | Order entry forms, position tables, copy-trade panels, orderbook and PnL views |
+| `gdex-ui-portfolio-dashboard` | Portfolio dashboards — balances, trade history, chain selectors, live polling |
+| `gdex-ui-wallet-connection` | Connect buttons, account displays, chain switching, API-key vs wallet auth UI |
+| `gdex-ui-theming` | CSS theming — dark/light modes, trading colors, breakpoints, official Gemach brand tokens |
+| `gdex-ui-page-layouts` | Full page compositions — trading, portfolio, copy-trading, and bridge pages |
+
+### Developer Tools
+
+| Skill | Description |
+|-------|-------------|
+| `gdex-sdk-debugging` | Troubleshoot SDK errors — error codes, encryption debugging, chain quirks, HL gotchas, copy-trade pitfalls |
 
 ## Supported Chains
 
-GDEX trading skills operate across the following networks:
+GDEX skills operate across 12 networks through a single interface:
 
-| Chain | Chain ID |
-|-------|----------|
-| Solana | 622112261 |
-| Ethereum | 1 |
-| Base | 8453 |
-| Arbitrum | 42161 |
-| BNB Smart Chain | 56 |
-| Optimism | 10 |
-| Sui | (native) |
-| Sonic | (native) |
-| Berachain | (native) |
+| Chain | ChainId | Native Token |
+|-------|---------|--------------|
+| Ethereum | `1` | ETH |
+| Optimism | `10` | ETH |
+| BNB Smart Chain | `56` | BNB |
+| Sonic | `146` | S |
+| Fraxtal | `252` | frxETH |
+| Nibiru | `6900` | NIBI |
+| Base | `8453` | ETH |
+| Arbitrum One | `42161` | ETH |
+| Berachain | `80094` | BERA |
+| Solana | `622112261` | SOL |
+| Sui | `1313131213` | SUI |
+| HyperLiquid | perps only | USDC |
 
-## ClawHub — Community Skill Registry
+{% hint style="warning" %}
+The Solana numeric chainId is **`622112261`** (`ChainId.SOLANA`), **not** `900`. Using `900` returns the EVM managed wallet and a `null` balance.
+{% endhint %}
 
-ClawHub is the community marketplace for agent skills. Developers and agents can publish, discover, and install skills beyond the 22 built-ins.
+## Authentication Model
 
-- **Discover** community-built skills for specialized strategies, data feeds, and protocol integrations
-- **Install** skills into a running agent with a single command
-- **Publish** your own skills and make them available to the ecosystem
-- **Rate** skills based on real-world agent performance
+All trading runs through **server-side managed wallets** — your control wallet only ever signs the initial sign-in message, never the on-chain trades.
+
+- **Shared API keys** (recommended for agents) are pre-configured in the package, so agents can read data and submit managed trades without any wallet handover.
+- **Read-only endpoints** (`getTrendingTokens`, `getTokenDetails`, `getOHLCV`, `getTopTraders`) need no authentication at all.
+- **Managed custody** uses a secp256k1 **session keypair** plus AES-256-CBC encrypted `computedData` payloads for write operations.
+
+See [GDEX Trading Skills](gdex-trading-skills.md) for the full sign-in flow.
 
 ## Explore This Section
 
-* [📄 SKILL.md Format Reference](skill-format.md) — anatomy of a skill file, required sections, best practices
-* [✏️ Creating Custom Skills](creating-custom-skills.md) — step-by-step guide to building your first skill
-* [📈 GDEX Trading Skills](gdex-trading-skills.md) — deep dive on all 14 GDEX trading skills
-* [🛠️ Utility Skills](utility-skills.md) — complete reference for all 8 utility skills
+* [📄 SKILL.md Format Reference](skill-format.md) — anatomy of a skill, the `skill.json` action manifest, and packaging
+* [✏️ Creating Custom Skills](creating-custom-skills.md) — add or extend a skill the gdex-skill way
+* [📈 GDEX Trading Skills](gdex-trading-skills.md) — deep dive on the trading, copy-trading, and discovery skills
+* [🛠️ Platform & UI Skills](utility-skills.md) — onboarding, transfers, social, HyperLiquid extras, React UI, and debugging
 
 ---
 
-Agent Skills are open source. The built-in skill set lives in the [`GemachDAO/Gclaw`](https://github.com/GemachDAO/Gclaw) repository under `workspace/skills/`.
+Agent Skills are open source under the MIT license. The full skill set lives in the [`GemachDAO/gdex-skill`](https://github.com/GemachDAO/gdex-skill) repository under `skills/`.

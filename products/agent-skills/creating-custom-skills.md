@@ -1,309 +1,155 @@
 ---
-description: Build your own SKILL.md from scratch — templates, naming rules, helper scripts, testing, and publishing to ClawHub
+description: Add or extend a GDEX skill — write a SKILL.md, register an action in skill.json, validate, and install it into your agent
 ---
 
 # ✏️ Creating Custom Skills
 
-Custom skills let you extend any Gemach agent with new capabilities specific to your workflow, your APIs, or your trading strategy. This guide walks you through the entire process — from idea to ClawHub-published skill.
+Custom skills let you extend the GDEX agent stack with capabilities specific to your workflow, your strategy, or a new GDEX endpoint. This guide follows the conventions used by the open-source [`GemachDAO/gdex-skill`](https://github.com/GemachDAO/gdex-skill) package.
 
 ## Prerequisites
 
-- A working Gclaw installation (see [Getting Started with Gclaw](../gclaw/getting-started-with-gclaw.md))
-- Basic familiarity with the [SKILL.md format](skill-format.md)
-- Node.js, Python, or shell scripting knowledge (for helper scripts)
-
-## Option A: Use the `skill-creator` Meta-Skill
-
-The fastest way to build a new skill is to let the agent help you scaffold it. Gclaw ships with a built-in `skill-creator` skill that turns natural language descriptions into SKILL.md boilerplate.
-
-**Step 1.** Launch Gclaw and describe what you want:
-
-```
-You: Create a new skill that fetches the current price of any token from
-     the CoinGecko API and returns the price in USD.
-```
-
-**Step 2.** The agent generates a scaffold:
-
-```
-Gclaw: I've created a new skill at workspace/skills/coingecko-price/SKILL.md.
-       It includes a get_token_price tool and a helpers/fetch-price.js script.
-       Review the files and let me know what to adjust.
-```
-
-**Step 3.** Review and refine. The scaffold gives you the structure — you fill in the details that only you know (API keys, endpoint specifics, error handling for your use case).
-
-## Option B: Build from Scratch
-
-### Step 1 — Create the Directory
-
-Skill directory names must be `kebab-case` and must match the `name` field in the front matter exactly:
+- Node.js 18+ (the SDK and MCP server target `>=18`)
+- Familiarity with the [SKILL.md format](skill-format.md)
+- A clone of the skill repository (or your own fork):
 
 ```bash
-mkdir -p workspace/skills/my-skill
-cd workspace/skills/my-skill
+git clone https://github.com/GemachDAO/gdex-skill
+cd gdex-skill
+npm install
 ```
 
-### Step 2 — Write the SKILL.md
+## Step 1 — Create the Skill Directory
 
-Start with the template from the [SKILL.md Format Reference](skill-format.md#full-skillmd-template) and fill in each section.
+Skill directories live under `skills/` and use `kebab-case` names. The directory name must match the `name` field in the front matter exactly:
 
-Here is a minimal but complete working example — a skill that checks the health of an external API endpoint:
+```bash
+mkdir -p skills/gdex-my-strategy
+```
 
-```markdown
+## Step 2 — Write the SKILL.md
+
+Create `skills/gdex-my-strategy/SKILL.md`. Keep the front matter to `name` + `description`, then write the body for the agent — a short intro, a **When to Use** list, **Prerequisites**, and one section per operation with a runnable example and a parameter table.
+
+````markdown
 ---
-name: api-health-check
-description: Check whether an external HTTP endpoint is reachable and returning expected responses.
-version: 1.0.0
-author: your-handle
+name: gdex-my-strategy
+description: Run a momentum strategy — discover trending Solana tokens, buy the top movers, and set take-profit limit sells
 ---
 
-# API Health Check
+# GDEX: My Strategy
 
-## Description
+Discovers trending tokens, buys the strongest movers, and arms a take-profit
+limit sell on each fill.
 
-Checks the availability and response time of an external HTTP endpoint.
-Useful in automated workflows where downstream actions depend on an API
-being healthy before proceeding.
+## When to Use
 
-## Instructions
+- The user asks to "run my momentum strategy" or to auto-buy trending tokens
+- A scheduled job needs to rebalance into the day's top movers
 
-Use this skill when you need to verify that an external service is online
-before making dependent calls.
+## Prerequisites
 
-1. Call `check_endpoint` with the target URL.
-2. Parse the `status`, `latency_ms`, and `body_preview` fields from the response.
-3. If `status` is not 200, report the failure to the user and do not proceed
-   with downstream actions.
-4. If `latency_ms` exceeds 3000, warn the user that the API is slow.
+- `@gdexsdk/gdex-skill` installed
+- Authenticated via `loginWithApiKey()` (see **gdex-authentication**)
+- Familiarity with **gdex-token-discovery**, **gdex-spot-trading**, and
+  **gdex-limit-orders**
 
-## Tools
+## Run the Strategy
 
-### check_endpoint
+```typescript
+import { GdexSkill, GDEX_API_KEY_PRIMARY } from '@gdexsdk/gdex-skill';
 
-**Description:** Sends a GET request to the provided URL and returns status, latency, and body preview.
+const skill = new GdexSkill();
+skill.loginWithApiKey(GDEX_API_KEY_PRIMARY);
 
-**Parameters:**
+const trending = await skill.getTrendingTokens({ chain: 'solana', period: '6h', limit: 3 });
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `url` | string | Yes | The full URL to check (e.g. `https://api.example.com/health`) |
-| `timeout_ms` | number | No | Request timeout in milliseconds. Default: 5000 |
+for (const token of trending) {
+  await skill.buyToken({ chain: 'solana', tokenAddress: token.address, amount: '0.05' });
+  // then arm a take-profit via gdex-limit-orders
+}
+```
 
-**Returns:** `{ status: number, latency_ms: number, body_preview: string }`
+> **Critical:** the Solana chainId is `622112261`, not `900`.
+````
 
-**Example call:**
+{% hint style="info" %}
+Reuse existing skills wherever possible. A new strategy skill should **compose** `gdex-token-discovery`, `gdex-spot-trading`, and `gdex-limit-orders` rather than re-implement trading logic.
+{% endhint %}
+
+## Step 3 — Register Actions (optional)
+
+If your skill exposes a new callable action to the skills.sh CLI or MCP server, add it to the top-level `skill.json` `actions` array with a JSON-Schema parameter spec:
+
 ```json
 {
-  "tool": "check_endpoint",
+  "name": "run_my_strategy",
+  "description": "Discover trending tokens and buy the top movers with a take-profit.",
   "parameters": {
-    "url": "https://api.example.com/health",
-    "timeout_ms": 3000
+    "type": "object",
+    "required": ["chain"],
+    "properties": {
+      "chain": { "type": ["string", "number"], "description": "Chain name or ChainId" },
+      "limit": { "type": "number", "description": "How many tokens to buy (default 3)" }
+    }
   }
 }
 ```
 
-## Examples
+Then add the skill name to the appropriate group in `skills.sh.json` so it shows up in the CLI.
 
-### Example 1: Healthy endpoint
+## Step 4 — Validate
 
-**Prompt:** "Is the Gemach API online?"
-
-**Expected behavior:**
-1. Agent calls `check_endpoint` with `https://api.gemach.io/health`
-2. Receives `{ status: 200, latency_ms: 142, body_preview: "{\"ok\":true}" }`
-3. Reports: "Gemach API is online. Response time: 142ms."
-
-### Example 2: Unreachable endpoint
-
-**Prompt:** "Check if my local server at localhost:3000 is running."
-
-**Expected behavior:**
-1. Agent calls `check_endpoint` with `http://localhost:3000`
-2. Receives an error (connection refused)
-3. Reports: "localhost:3000 is not reachable. Check that your server is running."
-
-## Error Handling
-
-| Error | Meaning | Recommended Action |
-|-------|---------|-------------------|
-| `ERR_TIMEOUT` | Request exceeded timeout | Retry once with doubled timeout |
-| `ERR_CONNECTION` | Host unreachable | Report failure; do not retry automatically |
-| `ERR_SSL` | Certificate error | Report the SSL issue specifically |
-```
-
-### Step 3 — Add Helper Scripts
-
-If your skill needs to make API calls, process data, or run complex logic, add helper scripts to a `helpers/` subdirectory.
-
-**Node.js helper example** (`helpers/check-endpoint.js`):
-
-```javascript
-#!/usr/bin/env node
-/**
- * Usage: node check-endpoint.js <url> [timeout_ms]
- * Output: JSON to stdout
- */
-
-const https = require('https');
-const http = require('http');
-const { URL } = require('url');
-
-const url = process.argv[2];
-const timeoutMs = parseInt(process.argv[3] || '5000', 10);
-
-if (!url) {
-  console.error(JSON.stringify({ error: 'ERR_NO_URL', message: 'URL argument required' }));
-  process.exit(1);
-}
-
-const start = Date.now();
-const parsedUrl = new URL(url);
-const client = parsedUrl.protocol === 'https:' ? https : http;
-
-const req = client.get(url, { timeout: timeoutMs }, (res) => {
-  let body = '';
-  res.on('data', (chunk) => { body += chunk; });
-  res.on('end', () => {
-    console.log(JSON.stringify({
-      status: res.statusCode,
-      latency_ms: Date.now() - start,
-      body_preview: body.slice(0, 200),
-    }));
-  });
-});
-
-req.on('timeout', () => {
-  req.destroy();
-  console.error(JSON.stringify({ error: 'ERR_TIMEOUT', message: `Request timed out after ${timeoutMs}ms` }));
-  process.exit(1);
-});
-
-req.on('error', (err) => {
-  console.error(JSON.stringify({ error: 'ERR_CONNECTION', message: err.message }));
-  process.exit(1);
-});
-```
-
-**Python helper example** (`helpers/parse-response.py`):
-
-```python
-#!/usr/bin/env python3
-"""
-Usage: python3 parse-response.py '<json_string>'
-Output: processed JSON to stdout
-"""
-
-import json
-import sys
-
-def parse(raw: str) -> dict:
-    data = json.loads(raw)
-    return {
-        "healthy": data.get("status") == 200,
-        "fast": data.get("latency_ms", 9999) < 1000,
-        "summary": f"HTTP {data.get('status')} in {data.get('latency_ms')}ms",
-    }
-
-if __name__ == "__main__":
-    try:
-        result = parse(sys.argv[1])
-        print(json.dumps(result))
-    except json.JSONDecodeError as e:
-        print(json.dumps({"error": "ERR_PARSE_FAILED", "message": str(e)}))
-        sys.exit(1)
-    except Exception as e:
-        print(json.dumps({"error": "ERR_UNKNOWN", "message": str(e)}))
-        sys.exit(1)
-```
-
-### Step 4 — Test Locally
-
-Testing a skill is straightforward: load it into a running agent and fire prompts that exercise each example in your `Examples` section.
+The repository ships scripts to check skills and the SDK without touching the network:
 
 ```bash
-# Launch Gclaw and load your workspace skill
-gclaw chat
-
-# In the chat interface, test with your example prompts
-> Is api.example.com reachable?
-> Check my localhost:3000 server
-> What happens if I pass a bad URL?
+npm run validate        # validate skill definitions
+npm run lint            # eslint over src and tests
+npm test                # jest suite (mocked HTTP — no API key or network)
+npm run verify          # offline SDK smoke test (no network token required)
+npm run verify:managed  # dry-run the managed-custody payload pipeline
 ```
 
-Checklist for a skill that passes testing:
+## Step 5 — Install Into Your Agent
 
-- [ ] Every example prompt produces the behavior described in `Examples`
-- [ ] Error conditions are handled gracefully (no unhandled panics or hallucinated responses)
-- [ ] The skill does not interfere with other loaded skills
-- [ ] Helper scripts exit non-zero on error and write valid JSON to stdout
-
-### Step 5 — Validate the SKILL.md
-
-Before publishing, verify your file structure:
-
-```
-my-skill/
-├── SKILL.md             ✅ Present
-├── helpers/
-│   └── check-endpoint.js  ✅ Executable, accepts CLI args, outputs JSON
-└── context/             (optional)
-```
-
-Run a quick lint check on the front matter:
+Install your fork's skills with the skills CLI:
 
 ```bash
-# Verify name matches directory
-grep "^name:" workspace/skills/my-skill/SKILL.md
-# Should output: name: my-skill
+# All skills from your fork
+npx skills add your-handle/gdex-skill --all --agent '*' -g
+
+# Just your new skill
+npx skills add your-handle/gdex-skill --skill gdex-my-strategy
+```
+
+Or expose it through the MCP server so any MCP client can call it:
+
+```bash
+npx @gdexsdk/mcp-server init --client claude
 ```
 
 ## Naming Conventions
 
 | Convention | Correct | Incorrect |
 |------------|---------|-----------|
-| kebab-case identifiers | `price-tracker` | `PriceTracker`, `price_tracker` |
+| kebab-case identifiers | `gdex-my-strategy` | `gdexMyStrategy`, `gdex_my_strategy` |
 | GDEX skills prefixed with `gdex-` | `gdex-my-strategy` | `my-gdex-strategy` |
-| Payment skills prefixed with protocol | `tempo-payment` | `payment-tempo` |
-| Concise, action-oriented names | `summarize` | `text-document-summarization-utility` |
-| Directory name matches `name` field | both = `my-skill` | directory = `my_skill`, name = `my-skill` |
+| UI skills prefixed with `gdex-ui-` | `gdex-ui-my-widget` | `gdex-my-widget-ui` |
+| Concise, action-oriented names | `gdex-portfolio` | `gdex-cross-chain-portfolio-viewer` |
+| Directory name matches `name` field | both = `gdex-my-strategy` | dir = `gdex_my_strategy`, name = `gdex-my-strategy` |
 
-## Publishing to ClawHub
+## Contributing Upstream
 
-Once your skill is tested and working, you can share it with the Gemach community through ClawHub — the community skill registry for Gemach agents.
+To contribute a skill back to the ecosystem, open a pull request against [`GemachDAO/gdex-skill`](https://github.com/GemachDAO/gdex-skill) with:
 
-**1. Prepare your skill package:**
-```
-my-skill/
-├── SKILL.md
-├── README.md      # Optional but recommended — human-readable docs
-├── helpers/
-└── LICENSE        # MIT recommended
-```
+- the new `skills/<name>/SKILL.md`
+- any `skill.json` / `skills.sh.json` additions
+- passing `npm run validate`, `npm run lint`, and `npm test`
 
-**2. Push to a public GitHub repository:**
-```bash
-git init
-git add .
-git commit -m "feat: initial skill release"
-git remote add origin https://github.com/your-handle/gclaw-skill-my-skill
-git push -u origin main
-```
-
-**3. Submit to ClawHub** by opening a PR to the [GemachDAO/clawhub](https://github.com/GemachDAO/clawhub) registry repository. Include:
-- Your skill's GitHub repository URL
-- A short description of what the skill does
-- The category tag (`gdex-trading`, `utility`, `payments`, etc.)
-
-Once merged, agents can install your skill directly:
-
-```bash
-gclaw skills install your-handle/my-skill
-```
+See the repository's `CONTRIBUTING` notes and `SECURITY.md` before submitting.
 
 ---
 
 **See also:**
 - [📄 SKILL.md Format Reference](skill-format.md) — every field and section documented
-- [🧩 Agent Skills Overview](README.md) — how skills are loaded and prioritized
+- [🧩 Agent Skills Overview](README.md) — install options and the full catalog
 - [📈 GDEX Trading Skills](gdex-trading-skills.md) — study the built-in skills as examples
