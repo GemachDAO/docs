@@ -1,15 +1,17 @@
 # Bridge Functionality
 
 
+
+
 ## Watch (23 sec)
 
-See Bridge on GDEX Pro:
+Bridge on GDEX Pro — send and receive across chains.
 
-<video controls width="100%" src="/videos/howto-bridge.mp4">
-  <a href="/videos/howto-bridge.mp4">Watch: Bridge (~23s)</a>
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-bridge.mp4" %}
+
+<video controls playsinline width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-bridge.mp4">
+  <source src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-bridge.mp4" type="video/mp4" />
 </video>
-
-[Download / open video](/videos/howto-bridge.mp4)
 
 ## Bridge Functionality
 
