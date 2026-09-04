@@ -2,15 +2,14 @@
 
 
 
+
+
 ## Watch (63 sec)
 
 Buy crypto with Apple Pay on GDEX Pro.
 
-{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4" %}
+<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4"></video>
 
-<video controls playsinline width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4">
-  <source src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4" type="video/mp4" />
-</video>
 
 ## Apple Pay Integration
 
