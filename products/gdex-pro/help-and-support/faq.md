@@ -8,11 +8,11 @@ GDEX.pro is a comprehensive cryptocurrency platform that combines multiple essen
 
 #### Is GDEX.pro suitable for beginners?
 
-Yes, GDEX.pro is designed to be accessible for both beginners and experienced traders. The platform offers intuitive interfaces, Web3Auth integration for simplified login, and comprehensive documentation to help new users get started.
+Yes, GDEX.pro is designed to be accessible for both beginners and experienced traders. The platform offers intuitive interfaces, Web3Auth integration for simplified login, and comprehensive documentation to help new users get started. Basic trading does not require holding GMAC.
 
 #### Which blockchains does GDEX.pro support?
 
-GDEX.pro currently supports Solana and Ethereum blockchains, with the Bridge feature allowing transfers between these networks. Support for additional blockchains may be added in the future.
+GDEX.pro supports multiple spot networks documented in the SDK and Agent Skills: Ethereum, Optimism, BNB Smart Chain, Sonic, Fraxtal, Nibiru, Base, Arbitrum One, Berachain, Solana, and Sui, plus HyperLiquid for perpetual futures and Outcomes. See [Canonical Facts](../canonical-facts.md) and the gdex-skill Supported Chains table. Marketing materials often highlight a 9-chain subset (Solana, Ethereum, Base, BNB, Arbitrum, Optimism, Sui, Sonic, Berachain).
 
 #### Is GDEX.pro available on mobile devices?
 
@@ -22,7 +22,7 @@ GDEX.pro is designed with responsive interfaces that work on both desktop and mo
 
 #### Do I need to create an account to use GDEX.pro?
 
-GDEX.pro uses Web3 authentication, so you don't need to create a traditional username and password. Instead, you connect using your cryptocurrency wallet or Web3Auth.
+GDEX.pro uses Web3 authentication, so you don't need to create a traditional username and password. Instead, you connect using your cryptocurrency wallet or Web3Auth. No identity verification (KYC) is required to sign up and trade.
 
 #### How do I connect my wallet to GDEX.pro?
 
@@ -40,15 +40,15 @@ If you're using Web3Auth, you can recover access through your authentication met
 
 #### How does Copy Trading work on GDEX.pro?
 
-Copy Trading allows you to automatically replicate the trading strategies of successful traders on the platform. You select a trader to copy, allocate funds, and the system automatically executes trades matching their actions proportional to your allocation.
+Copy Trading allows you to automatically replicate the trading strategies of successful traders on the platform. You can also mirror up to 6 AI agent wallets. You select a trader or agent to copy, allocate funds, and the system automatically executes trades matching their actions proportional to your allocation.
 
 #### Are there fees for using GDEX.pro?
 
-GDEX.pro may charge fees for certain transactions, such as trades or cross-chain transfers. These fees will be displayed before you confirm any transaction.
+On-chain swaps are approximately 1%. Apple Pay / fiat on-ramp fees are approximately 2–3% with a $50 minimum. Exact quotes are shown before you confirm any transaction. Network / gas fees are paid on-chain as usual.
 
 #### How do I buy cryptocurrency on GDEX.pro?
 
-You can buy cryptocurrency on GDEX.pro using Apple Pay or other supported payment methods. Navigate to the purchasing section, select the cryptocurrency you wish to buy, enter the amount, choose your payment method, and confirm the transaction.
+You can buy cryptocurrency on GDEX.pro using Apple Pay or other supported payment methods (no KYC). Navigate to the purchasing section, select the cryptocurrency you wish to buy, enter the amount (Apple Pay minimum $50), choose your payment method, and confirm the transaction.
 
 #### What is the Quick Buy feature?
 
@@ -58,7 +58,7 @@ Quick Buy allows you to quickly purchase tokens directly from the Discovery or M
 
 #### What is the Bridge feature used for?
 
-The Bridge feature allows you to exchange cryptocurrencies across different blockchains, such as transferring assets between Solana and Ethereum networks.
+The Bridge feature allows you to exchange cryptocurrencies across different blockchains among the supported networks listed above.
 
 #### How does Web3Auth integration work?
 
@@ -66,7 +66,7 @@ Web3Auth allows you to log in to GDEX.pro using familiar methods like social log
 
 #### Can I use Apple Pay to buy cryptocurrency?
 
-Yes, GDEX.pro supports Apple Pay for purchasing cryptocurrency, providing a familiar and convenient payment method for users with Apple devices.
+Yes, GDEX.pro supports Apple Pay for purchasing cryptocurrency, providing a familiar and convenient payment method for users with Apple devices. Minimum purchase is $50; on-ramp fees are approximately 2–3%.
 
 #### What should I do if a transaction is pending?
 
