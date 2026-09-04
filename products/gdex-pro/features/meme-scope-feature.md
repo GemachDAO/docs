@@ -1,5 +1,16 @@
 # Meme Scope Feature
 
+
+## Watch (31 sec)
+
+See Trenches / Memescope on GDEX Pro:
+
+<video controls width="100%" src="/videos/howto-trenches.mp4">
+  <a href="/videos/howto-trenches.mp4">Watch: Trenches / Memescope (~31s)</a>
+</video>
+
+[Download / open video](/videos/howto-trenches.mp4)
+
 ## Memescope Feature
 
 The Memescope feature on GDEX.pro provides customized real-time feeds of new tokens matching your selected preset filters, helping you stay on top of the latest trends and opportunities in the cryptocurrency market.
