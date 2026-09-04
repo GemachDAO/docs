@@ -1,14 +1,16 @@
 # Perpetual Trading (Perp)
 
-## Watch (60 sec)
 
-See Hyperliquid perps on GDEX Pro in about a minute:
 
-<video controls width="100%" src="/videos/howto-hyperliquid.mp4">
-  <a href="/videos/howto-hyperliquid.mp4">Watch: Hyperliquid perps (~62s)</a>
+## Watch (62 sec)
+
+Hyperliquid perps — long/short, leverage, TP/SL.
+
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-hyperliquid.mp4" %}
+
+<video controls playsinline width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-hyperliquid.mp4">
+  <source src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-hyperliquid.mp4" type="video/mp4" />
 </video>
-
-[Download / open video](/videos/howto-hyperliquid.mp4)
 
 ## Watch (20 sec)
 

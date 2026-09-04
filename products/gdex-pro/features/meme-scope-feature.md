@@ -1,15 +1,17 @@
 # Meme Scope Feature
 
 
+
+
 ## Watch (31 sec)
 
-See Trenches / Memescope on GDEX Pro:
+Trenches — New / Almost Bonded / Migrated feeds.
 
-<video controls width="100%" src="/videos/howto-trenches.mp4">
-  <a href="/videos/howto-trenches.mp4">Watch: Trenches / Memescope (~31s)</a>
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-trenches.mp4" %}
+
+<video controls playsinline width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-trenches.mp4">
+  <source src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-trenches.mp4" type="video/mp4" />
 </video>
-
-[Download / open video](/videos/howto-trenches.mp4)
 
 ## Memescope Feature
 

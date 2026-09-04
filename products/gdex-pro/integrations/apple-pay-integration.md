@@ -1,14 +1,16 @@
 # Apple-Pay Integration
 
-## Watch (60 sec)
 
-See Apple Pay on-ramp on GDEX Pro in about a minute:
 
-<video controls width="100%" src="/videos/howto-buy-applepay.mp4">
-  <a href="/videos/howto-buy-applepay.mp4">Watch: Buy with Apple Pay (~63s)</a>
+## Watch (63 sec)
+
+Buy crypto with Apple Pay on GDEX Pro.
+
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4" %}
+
+<video controls playsinline width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4">
+  <source src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4" type="video/mp4" />
 </video>
-
-[Download / open video](/videos/howto-buy-applepay.mp4)
 
 ## Apple Pay Integration
 

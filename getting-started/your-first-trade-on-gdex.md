@@ -1,45 +1,38 @@
 # 🎯 Your First Trade on GDex Pro
 
+
+## Watch the how-to series
+
+Play these on the page — no need to leave docs:
+
+### Buy with Apple Pay
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4" %}
+
+### Hyperliquid / leverage
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-hyperliquid.mp4" %}
+
+### Trenches
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-trenches.mp4" %}
+
+### XStocks
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-xstocks.mp4" %}
+
+### Bridge
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-bridge.mp4" %}
+
+### Copy Trade
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-copy-trade.mp4" %}
+
+### Outcomes
+{% embed url="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-outcomes.mp4" %}
+
+
 This is your step-by-step walkthrough for going from zero to completing your first trade on GDex Pro. Take it one step at a time — you've got this.
 
 {% hint style="info" %}
 **Total time:** About 5–10 minutes for your first time. Subsequent trades take seconds.
 {% endhint %}
 
-## Watch (how-to series)
-
-Short how-to clips for GDEX Pro:
-
-1. [Buy with Apple Pay](/videos/howto-buy-applepay.mp4) (~63s)
-2. [Hyperliquid perps](/videos/howto-hyperliquid.mp4) (~62s)
-3. [Trenches](/videos/howto-trenches.mp4) (~31s)
-4. [XStock](/videos/howto-xstocks.mp4) (~30s)
-5. [Bridge](/videos/howto-bridge.mp4) (~23s)
-6. [Copy Trade](/videos/howto-copy-trade.mp4) (~24s)
-7. [Outcomes](/videos/howto-outcomes.mp4) (~20s)
-
-<video controls width="100%" src="/videos/howto-trenches.mp4">
-  <a href="/videos/howto-trenches.mp4">Trenches</a>
-</video>
-
-<video controls width="100%" src="/videos/howto-xstocks.mp4">
-  <a href="/videos/howto-xstocks.mp4">XStock</a>
-</video>
-
-<video controls width="100%" src="/videos/howto-bridge.mp4">
-  <a href="/videos/howto-bridge.mp4">Bridge</a>
-</video>
-
-<video controls width="100%" src="/videos/howto-copy-trade.mp4">
-  <a href="/videos/howto-copy-trade.mp4">Copy Trade</a>
-</video>
-
-<video controls width="100%" src="/videos/howto-outcomes.mp4">
-  <a href="/videos/howto-outcomes.mp4">Outcomes</a>
-</video>
-
-
----
 
 ## Step 1: Visit GDex Pro
 
