@@ -10,6 +10,17 @@ See Hyperliquid perps on GDEX Pro in about a minute:
 
 [Download / open video](/videos/howto-hyperliquid.mp4)
 
+## Watch (20 sec)
+
+See Outcomes (prediction markets) on GDEX Pro:
+
+<video controls width="100%" src="/videos/howto-outcomes.mp4">
+  <a href="/videos/howto-outcomes.mp4">Watch: Outcomes (prediction markets) (~20s)</a>
+</video>
+
+[Download / open video](/videos/howto-outcomes.mp4)
+
+
 ### Overview
 
 The **Perpetual Trading (Perp)** feature on GDex Pro lets you copy professional perpetual (perp) traders from Hyperliquid or open your own leveraged long and short positions. Perp copy trading automates your trades based on another wallet’s actions, while the manual trade interface offers advanced tools such as limit orders, cross/isolated margin and leverage.
