@@ -1,5 +1,16 @@
 # Discovery Feature
 
+
+## Watch (30 sec)
+
+See XStock (tokenized stocks) on GDEX Pro:
+
+<video controls width="100%" src="/videos/howto-xstocks.mp4">
+  <a href="/videos/howto-xstocks.mp4">Watch: XStock (tokenized stocks) (~30s)</a>
+</video>
+
+[Download / open video](/videos/howto-xstocks.mp4)
+
 ## Discovery Feature
 
 The Discovery feature on GDEX.pro allows you to find new token pairs in real-time, providing comprehensive information to help you make informed trading decisions.
