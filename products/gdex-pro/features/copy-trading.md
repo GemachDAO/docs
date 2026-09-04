@@ -1,5 +1,16 @@
 # Copy Trading
 
+
+## Watch (24 sec)
+
+See Copy Trade on GDEX Pro:
+
+<video controls width="100%" src="/videos/howto-copy-trade.mp4">
+  <a href="/videos/howto-copy-trade.mp4">Watch: Copy Trade (~24s)</a>
+</video>
+
+[Download / open video](/videos/howto-copy-trade.mp4)
+
 ### Copy Trading Feature
 
 The Copy Trading feature on GDEX.pro allows you to automatically replicate the trading strategies of successful traders on the platform, potentially benefiting from their expertise without having to execute trades manually.
