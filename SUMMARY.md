@@ -20,6 +20,7 @@
 
 * [🪬 GDex Pro](products/gdex-pro/README.md)
   * [Introduction](products/gdex-pro/introduction.md)
+  * [Canonical Facts](products/gdex-pro/canonical-facts.md)
   * [Getting Started with GDex.Pro](products/gdex-pro/getting-started-with-gdex.pro.md)
   * [Perpetual Trading (Perp)](products/gdex-pro/perpetual-trading-perp.md)
   * [Features](products/gdex-pro/features/README.md)
