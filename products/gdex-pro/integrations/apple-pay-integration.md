@@ -1,5 +1,15 @@
 # Apple-Pay Integration
 
+## Watch (60 sec)
+
+See Apple Pay on-ramp on GDEX Pro in about a minute:
+
+<video controls width="100%" src="/videos/howto-buy-applepay.mp4">
+  <a href="/videos/howto-buy-applepay.mp4">Watch: Buy with Apple Pay (~63s)</a>
+</video>
+
+[Download / open video](/videos/howto-buy-applepay.mp4)
+
 ## Apple Pay Integration
 
 GDEX.pro's Apple Pay integration allows you to purchase cryptocurrency directly using your Apple Pay account, providing a familiar and convenient payment method that simplifies the crypto buying process.

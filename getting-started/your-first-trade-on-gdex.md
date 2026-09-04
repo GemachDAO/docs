@@ -6,6 +6,21 @@ This is your step-by-step walkthrough for going from zero to completing your fir
 **Total time:** About 5–10 minutes for your first time. Subsequent trades take seconds.
 {% endhint %}
 
+## Watch (60 sec)
+
+Short how-to series (about a minute each):
+
+1. [Buy with Apple Pay](/videos/howto-buy-applepay.mp4) (~63s)
+2. [Hyperliquid perps](/videos/howto-hyperliquid.mp4) (~62s)
+
+<video controls width="100%" src="/videos/howto-buy-applepay.mp4">
+  <a href="/videos/howto-buy-applepay.mp4">Apple Pay</a>
+</video>
+
+<video controls width="100%" src="/videos/howto-hyperliquid.mp4">
+  <a href="/videos/howto-hyperliquid.mp4">Hyperliquid</a>
+</video>
+
 ---
 
 ## Step 1: Visit GDex Pro
