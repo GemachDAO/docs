@@ -1,5 +1,16 @@
 # Bridge Functionality
 
+
+## Watch (23 sec)
+
+See Bridge on GDEX Pro:
+
+<video controls width="100%" src="/videos/howto-bridge.mp4">
+  <a href="/videos/howto-bridge.mp4">Watch: Bridge (~23s)</a>
+</video>
+
+[Download / open video](/videos/howto-bridge.mp4)
+
 ## Bridge Functionality
 
 The Bridge feature on GDEX.pro allows you to exchange cryptocurrencies across different blockchains, providing a seamless cross-chain experience.
