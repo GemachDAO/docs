@@ -29,6 +29,8 @@
     * [Bubble Maps Visualization](products/gdex-pro/features/bubble-maps-visualization.md)
     * [Bridge Functionality](products/gdex-pro/features/bridge-functionality.md)
     * [Copy Trading](products/gdex-pro/features/copy-trading.md)
+    * [XStocks](products/gdex-pro/features/xstocks.md)
+    * [Outcomes](products/gdex-pro/features/outcomes.md)
   * [Integrations](products/gdex-pro/integrations/README.md)
     * [Apple-Pay Integration](products/gdex-pro/integrations/apple-pay-integration.md)
     * [Web3Auth Integration](products/gdex-pro/integrations/web3auth-integration.md)
