@@ -8,25 +8,25 @@
 Play these right on the page:
 
 ### Buy with Apple Pay
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-buy-applepay.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1B3fmh1wJ8fyO3tHRWdsYTI3fbXFbTbY6/preview" %}
 
 ### Hyperliquid / leverage
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-hyperliquid.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1-2adUtQA07lTekqVz6lOoHwct5B7ojjs/preview" %}
 
 ### Trenches
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-trenches.mp4"></video>
+{% embed url="https://drive.google.com/file/d/15XiQ1qsl_elmVvnL2MkCiGB7tWQQgNXa/preview" %}
 
 ### XStocks
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-xstocks.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1Z4R6PWN2-lfn_cOhHZBxp0hfOVngg3a2/preview" %}
 
 ### Bridge
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-bridge.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1cYG_j50aBcvR7j67riTRd798AZsCaOpL/preview" %}
 
 ### Copy Trade
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-copy-trade.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1U6eC3IZd3-P_QqFQhIl9Lgf0BU5KFcQt/preview" %}
 
 ### Outcomes
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-outcomes.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1mEchp_Z6jU6V4QI1eHvcybjJb3S-x9Hs/preview" %}
 
 
 ## Step 1: Visit GDex Pro

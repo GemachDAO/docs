@@ -5,7 +5,7 @@
 
 Outcomes — prediction markets on GDEX Pro.
 
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-outcomes.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1mEchp_Z6jU6V4QI1eHvcybjJb3S-x9Hs/preview" %}
 
 
 Outcomes on GDEX Pro are Hyperliquid prediction markets — browse crypto and event markets, then open one to trade.

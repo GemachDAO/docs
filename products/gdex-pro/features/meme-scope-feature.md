@@ -9,7 +9,7 @@
 
 Trenches — New / Almost Bonded / Migrated feeds.
 
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-trenches.mp4"></video>
+{% embed url="https://drive.google.com/file/d/15XiQ1qsl_elmVvnL2MkCiGB7tWQQgNXa/preview" %}
 
 
 ## Memescope Feature
