@@ -9,7 +9,7 @@
 
 Bridge on GDEX Pro — send and receive across chains.
 
-<video controls playsinline preload="metadata" width="100%" src="https://cdn.jsdelivr.net/gh/GemachDAO/docs@master/.gitbook/assets/howto-bridge.mp4"></video>
+{% embed url="https://drive.google.com/file/d/1cYG_j50aBcvR7j67riTRd798AZsCaOpL/preview" %}
 
 
 ## Bridge Functionality
