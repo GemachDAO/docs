@@ -58,7 +58,7 @@ currently names only five. Prefer the full table when accuracy matters.
   marked coming soon in the UI. Up to 5 agents, Conservative / Balanced / Aggressive presets
 - Outcomes (Hyperliquid prediction / event markets)
 - Fiat on-ramp via Apple Pay / card providers inside the terminal
-- Agent Skills + MCP: 27 skills; **117 MCP tools** = **109 execution + 8 documentation**
+- Agent Skills + MCP: 29 skills; **117 MCP tools** = **109 execution + 8 documentation**
   (counted from `mcp-server/src/tools/*.ts` plus the 8 documentation tools in `mcp-server/src/index.ts`)
 
 ## Fees and KYC
