@@ -22,7 +22,7 @@ description: Gemach's development history and forward-looking milestones — fro
 
 - ✅ **GDex Pro** — Multi-chain trading terminal live at [gdex.pro](https://gdex.pro): spot trading, HyperLiquid perps, copy trading, cross-chain bridge, Trenches, Bubble Maps, Web3Auth social login, Apple Pay on-ramp
 - ✅ **Gemach AI** *(retired)* — Natural-language DeFi interface with Stryke and Symbiosis integrations. Succeeded by the Agent Skills and the GDex Pro Agent Risk Terminal.
-- ✅ **Gclaw Living Agent** — Autonomous AI trading agent with GMAC metabolism, goodwill system, and swarm mode; live at [gclaw.gemach.io](https://gclaw.gemach.io)
+- ✅ **Gclaw Living Agent** — Autonomous AI trading agent with GMAC metabolism, goodwill system, and swarm mode; open source at [github.com/GemachDAO/Gclaw](https://github.com/GemachDAO/Gclaw)
 - ✅ **GDEX SDK** — Open developer toolkit (`@gdexsdk/gdex-skill` npm package, MCP server, Agent Skills library)
 - ✅ **GMAC Multi-Chain** — GMAC available on Uniswap (Ethereum), Curve (Arbitrum), and Orca (Solana)
 - ✅ **Community Programs** — Ambassador program, contributor recognition, and strategic partnerships established
