@@ -13,7 +13,7 @@ Gemach is a community-governed DAO building the most complete self-custodial DeF
 | Product | What It Does | Link |
 |---|---|---|
 | **GDex Pro** | High-performance multi-chain trading terminal — spot, perps, copy trading, bridge, discovery, and more | [gdex.pro](https://gdex.pro) |
-| **Gclaw** | A living AI trading agent that consumes GMAC as life energy and must trade to survive | [gclaw.gemach.io](https://gclaw.gemach.io) |
+| **Gclaw** | A living AI trading agent that consumes GMAC as life energy and must trade to survive | [gemach.io/gclaw](https://gemach.io/gclaw) |
 | **Agent Skills** | Modular skill packages that let any AI agent trade on GDex Pro — spot, perps, copy trading, bridge, and portfolio | [Docs](products/agent-skills/README.md) |
 | **GBot** | Telegram-native sniper and trading bot for Solana and EVM chains | [t.me/Gemach_Bot](https://t.me/Gemach_Bot) |
 | **GLend** | Algorithmic lending and borrowing money markets on Arbitrum | [glend.gemach.io](https://glend.gemach.io/) |

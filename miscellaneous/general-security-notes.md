@@ -47,7 +47,7 @@ Only interact with Gemach products through these official domains. Bookmark them
 |---|---|
 | GDex Pro | `gdex.pro` |
 | Gemach (main site) | `gemach.io` |
-| Gclaw | `gclaw.gemach.io` |
+| Gclaw | `gemach.io/gclaw` |
 | GLend | `glend.gemach.io` |
 | GLoans | `stake.gemach.io` |
 | GBot | Telegram only: `@Gemach_Bot` |
