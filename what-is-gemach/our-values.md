@@ -22,7 +22,7 @@ Security is not a feature added at the end — it is the starting assumption for
 
 ## 5. Accessible Innovation
 
-Advanced DeFi capabilities should be available to everyone, not just developers or experienced traders. Every powerful feature we ship also ships with documentation, a beginner path, and a natural-language interface. A user who has never traded crypto before should be able to make their first trade on GDex Pro or through Gemach AI within minutes. Complexity belongs inside the protocol, not in the user experience.
+Advanced DeFi capabilities should be available to everyone, not just developers or experienced traders. Every powerful feature we ship also ships with documentation, a beginner path, and a natural-language interface. A user who has never traded crypto before should be able to make their first trade on GDex Pro, or through an AI agent running the GDEX skills, within minutes. Complexity belongs inside the protocol, not in the user experience.
 
 ## 6. Continuous Evolution
 

@@ -10,7 +10,6 @@ description: Quick reference links to all Gemach products, social channels, comm
 |---|---|
 | Gemach | [gemach.io](https://gemach.io) |
 | GDex Pro | [gdex.pro](https://gdex.pro) |
-| Gemach AI | [gemach.io](https://gemach.io) |
 | Gclaw | [gclaw.gemach.io](https://gclaw.gemach.io) |
 | GBot | [t.me/Gemach_Bot](https://t.me/Gemach_Bot) |
 | GLend | [glend.gemach.io](https://glend.gemach.io/) |

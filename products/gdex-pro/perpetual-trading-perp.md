@@ -4,6 +4,8 @@
 
 
 
+<figure><img src="../../.gitbook/assets/gdex-perp.png" alt="The perpetual futures trading screen on GDEX Pro"><figcaption><p>Hyperliquid perpetual futures on GDEX Pro</p></figcaption></figure>
+
 ## Watch (62 sec)
 
 Hyperliquid perps — long/short, leverage, TP/SL.

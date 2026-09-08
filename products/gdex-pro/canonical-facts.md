@@ -18,7 +18,8 @@
 
 ## Chains
 
-**Product of record (SDK / Agent Skills):** 11 spot networks + HyperLiquid for perps.
+**Product of record (back-end `supportedChainIds`):** 12 spot networks + HyperLiquid for perps.
+Ten EVM chains plus Solana and Sui.
 
 | Chain | Notes |
 | --- | --- |
@@ -33,10 +34,16 @@
 | Berachain | Spot |
 | Solana | Raydium, Orca |
 | Sui | Cetus, Bluefin |
+| Robinhood Chain | Spot; bridge routed via LI.FI |
 
 **Perps / Outcomes:** HyperLiquid (USDC collateral; deposit path on Arbitrum).
 
-**Common marketing list (9 chains):** Solana, Ethereum, Base, BNB, Arbitrum, Optimism, Sui, Sonic, Berachain — the SDK set above minus Fraxtal and Nibiru. Prefer the full SDK table when accuracy matters.
+**Common marketing list (9 chains):** Solana, Ethereum, Base, BNB, Arbitrum, Optimism, Sui, Sonic,
+Berachain — the table above minus Fraxtal, Nibiru and Robinhood Chain. The gdex.pro landing page
+currently names only five. Prefer the full table when accuracy matters.
+
+> The SDK's `chains.ts` additionally defines Avalanche, Blast, Linea, Polygon, Scroll and zkSync
+> Era. These are **not** in the back-end's supported list, so do not advertise them.
 
 ## Core features
 
@@ -44,11 +51,15 @@
 - HyperLiquid perpetual futures (leverage documented up to 50x; TP/SL)
 - Copy trading, including mirroring up to **6 AI agent wallets**
 - Cross-chain bridge
-- Discovery, Portfolio, Memescope / Trenches, Bubble Maps
+- Discovery, Portfolio, Trenches (memecoin board), Bubble Maps
 - XStocks (tokenized stock markets)
+- Content and Creator Coins (Zora markets on Base)
+- Trading Agents — the Agent Risk Terminal: perp and outcome agents, live; pumpfun agents
+  marked coming soon in the UI. Up to 5 agents, Conservative / Balanced / Aggressive presets
 - Outcomes (Hyperliquid prediction / event markets)
 - Fiat on-ramp via Apple Pay / card providers inside the terminal
-- Agent Skills + MCP: 27 skills; **116 MCP tools** = **108 execution + 8 documentation**
+- Agent Skills + MCP: 27 skills; **117 MCP tools** = **109 execution + 8 documentation**
+  (counted from `mcp-server/src/tools/*.ts` plus the 8 documentation tools in `mcp-server/src/index.ts`)
 
 ## Fees and KYC
 

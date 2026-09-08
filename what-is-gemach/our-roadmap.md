@@ -20,8 +20,8 @@ description: Gemach's development history and forward-looking milestones — fro
 
 ## ✅ Delivered (2025)
 
-- ✅ **GDex Pro** — Multi-chain trading terminal live at [gdex.pro](https://gdex.pro): spot trading, HyperLiquid perps, copy trading, cross-chain bridge, Memescope, Bubble Maps, Web3Auth social login, Apple Pay on-ramp
-- ✅ **Gemach AI** — Natural-language DeFi interface; Stryke and Symbiosis protocol integrations; multi-chain portfolio management
+- ✅ **GDex Pro** — Multi-chain trading terminal live at [gdex.pro](https://gdex.pro): spot trading, HyperLiquid perps, copy trading, cross-chain bridge, Trenches, Bubble Maps, Web3Auth social login, Apple Pay on-ramp
+- ✅ **Gemach AI** *(retired)* — Natural-language DeFi interface with Stryke and Symbiosis integrations. Succeeded by the Agent Skills and the GDex Pro Agent Risk Terminal.
 - ✅ **Gclaw Living Agent** — Autonomous AI trading agent with GMAC metabolism, goodwill system, and swarm mode; live at [gclaw.gemach.io](https://gclaw.gemach.io)
 - ✅ **GDEX SDK** — Open developer toolkit (`@gdexsdk/gdex-skill` npm package, MCP server, Agent Skills library)
 - ✅ **GMAC Multi-Chain** — GMAC available on Uniswap (Ethereum), Curve (Arbitrum), and Orca (Solana)
@@ -36,7 +36,7 @@ description: Gemach's development history and forward-looking milestones — fro
 - 🔄 **Agent Skills Marketplace** — Community-submitted skills, ClawHub publishing pipeline, skill monetization framework
 - 🔄 **GDex Pro Perpetual Expansion** — Additional perpetual pairs, enhanced risk controls, liquidation monitoring tools
 - 🔄 **Cross-Chain Bridge Improvements** — Faster settlement, more routes, lower fees on high-volume paths
-- 🔄 **Gemach AI Multi-Protocol** — Expanded protocol coverage; deeper GLend, GVault, and GFund integrations via natural language
+- 🔄 **GDex Pro Trading Agents** — Perp and outcome agents live in the Agent Risk Terminal; pumpfun agents next, plus wider preset coverage
 
 ---
 
@@ -44,7 +44,7 @@ description: Gemach's development history and forward-looking milestones — fro
 
 - **Autonomous Trading Swarms** — Fully coordinated multi-agent swarms with shared strategy and on-chain governance
 - **Institutional-Grade APIs** — REST and WebSocket APIs for institutional integrators, algorithmic traders, and third-party AI systems
-- **Mobile-Native Experience** — Native iOS and Android apps with full GDex Pro feature parity and Gemach AI integration
+- **Mobile-Native Experience** — Native iOS and Android apps with full GDex Pro feature parity and agent-driven trading
 - **DAO Treasury Management Tools** — On-chain tooling for proposal execution, treasury diversification, and contributor payments
 - **Expanded Chain Coverage** — Continuous integration of high-traction L1s and L2s as the multi-chain ecosystem grows
 - **Developer Ecosystem Growth** — GDEX SDK v2, additional MCP tools, partner integrations, and hackathon grants program
