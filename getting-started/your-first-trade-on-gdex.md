@@ -171,5 +171,5 @@ Now that you've completed your first trade, here's where to go next:
 - **[Copy Trading](../products/gdex-pro/features/copy-trading.md)** — Automatically mirror the trades of successful traders
 - **[Bridge](../products/gdex-pro/features/bridge-functionality.md)** — Move tokens across different blockchains
 - **[Perpetual Trading](../products/gdex-pro/perpetual-trading-perp.md)** — Advanced leveraged trading (for experienced users)
-- **[Gemach AI](../products/gemach-ai/README.md)** — Use natural language to execute DeFi actions ("swap 50 USDC for ETH")
+- **[Agent Skills](../products/agent-skills/README.md)** — Let an AI agent execute for you ("swap 50 USDC for ETH")
 - **[Common Terms Glossary](common-terms-glossary.md)** — Look up any terms you encounter

@@ -1,9 +1,9 @@
-# Meme Scope Feature
+# Trenches
 
+Trenches is the memecoin discovery board on GDEX Pro. It appears as **TRENCHES** in the top
+navigation; earlier documentation called it Meme Scope.
 
-
-
-
+<figure><img src="../../../.gitbook/assets/gdex-trenches.png" alt="The Trenches board on GDEX Pro with the New, Almost Bonded and Migrated columns"><figcaption><p>Trenches — New, Almost Bonded and Migrated feeds, each row with quick-buy amounts</p></figcaption></figure>
 
 ## Watch (31 sec)
 
@@ -11,33 +11,32 @@ Trenches — New / Almost Bonded / Migrated feeds.
 
 {% embed url="https://drive.google.com/file/d/15XiQ1qsl_elmVvnL2MkCiGB7tWQQgNXa/preview" %}
 
+## How Trenches works
 
-## Memescope Feature
+The Trenches feature on GDEX.pro provides customized real-time feeds of new tokens matching your selected preset filters, helping you stay on top of the latest trends and opportunities in the cryptocurrency market.
 
-The Memescope feature on GDEX.pro provides customized real-time feeds of new tokens matching your selected preset filters, helping you stay on top of the latest trends and opportunities in the cryptocurrency market.
+### Accessing the Trenches Feature
 
-### Accessing the Memescope Feature
+The Trenches feature is accessible from the main navigation menu at the top of the GDEX.pro interface. Simply click on "MEMESCOPE" to access this feature.
 
-The Memescope feature is accessible from the main navigation menu at the top of the GDEX.pro interface. Simply click on "MEMESCOPE" to access this feature.
+### Understanding the Trenches Interface
 
-### Understanding the Memescope Interface
+The Trenches page is designed to provide a customized feed of new tokens based on your preferences. The interface is divided into several key sections.
 
-The Memescope page is designed to provide a customized feed of new tokens based on your preferences. The interface is divided into several key sections.
+#### Key Elements of the Trenches Page
 
-#### Key Elements of the Memescope Page
+The Trenches page includes the following elements:
 
-The Memescope page includes the following elements:
-
-1. **Memescope Header**: Indicates you're viewing the Memescope feature
+1. **Trenches Header**: Indicates you're viewing the Trenches feature
 2. **Feature Description**: Explains that you're viewing customized real-time feeds of new tokens
 3. **Quick Buy Toggle**: Option to enable or disable quick buying functionality
 4. **Amount Presets**: Buttons to quickly select purchase amounts (0.5, 1, 5)
 5. **Category Sections**: Different sections for token categories (e.g., "NEWLY CREATED", "ABOUT TO GRADUATE")
 6. **Token Cards**: Individual cards displaying information about each token
 
-### Using Memescope Filters
+### Using Trenches Filters
 
-Memescope allows you to filter tokens based on various criteria to customize your feed:
+Trenches allows you to filter tokens based on various criteria to customize your feed:
 
 #### Quick Buy Filter
 
@@ -49,7 +48,7 @@ Select from preset amounts (0.5, 1, 5) to quickly set your preferred purchase am
 
 ### Understanding Token Categories
 
-Memescope organizes tokens into different categories to help you find opportunities that match your interests:
+Trenches organizes tokens into different categories to help you find opportunities that match your interests:
 
 #### Newly Created
 
@@ -61,7 +60,7 @@ This section shows tokens that have met certain criteria and are about to "gradu
 
 ### Token Card Information
 
-Each token card in Memescope provides detailed information to help you evaluate potential opportunities:
+Each token card in Trenches provides detailed information to help you evaluate potential opportunities:
 
 #### Token Identification
 
@@ -78,7 +77,7 @@ Each token card in Memescope provides detailed information to help you evaluate 
 
 ### Using Quick Buy
 
-The Quick Buy feature allows you to quickly purchase tokens directly from the Memescope interface:
+The Quick Buy feature allows you to quickly purchase tokens directly from the Trenches interface:
 
 1. Enable the Quick Buy toggle at the top of the page
 2. Browse tokens in your customized feed
@@ -86,18 +85,18 @@ The Quick Buy feature allows you to quickly purchase tokens directly from the Me
 4. Click the Quick Buy button on the token card
 5. Confirm the transaction in your wallet
 
-### Best Practices for Using Memescope
+### Best Practices for Using Trenches
 
-To make the most of the Memescope feature:
+To make the most of the Trenches feature:
 
 1. **Set Clear Criteria**: Use filters to focus on tokens that match your investment strategy
-2. **Regular Monitoring**: Check Memescope regularly to catch new opportunities
-3. **Research Further**: Use Memescope as a starting point, but conduct additional research before investing
-4. **Start Small**: When trying new tokens discovered through Memescope, consider starting with smaller investments
+2. **Regular Monitoring**: Check Trenches regularly to catch new opportunities
+3. **Research Further**: Use Trenches as a starting point, but conduct additional research before investing
+4. **Start Small**: When trying new tokens discovered through Trenches, consider starting with smaller investments
 5. **Compare Categories**: Look at tokens across different categories to understand market trends
 
 ### Connecting Your Wallet
 
-To fully utilize the Memescope feature, including Quick Buy functionality, you'll need to connect your wallet to GDEX.pro. Refer to the Getting Started section for instructions on connecting your wallet.
+To fully utilize the Trenches feature, including Quick Buy functionality, you'll need to connect your wallet to GDEX.pro. Refer to the Getting Started section for instructions on connecting your wallet.
 
-The Memescope feature provides a powerful way to discover new tokens and stay ahead of market trends, giving you early access to potential opportunities in the fast-moving cryptocurrency space.
+The Trenches feature provides a powerful way to discover new tokens and stay ahead of market trends, giving you early access to potential opportunities in the fast-moving cryptocurrency space.

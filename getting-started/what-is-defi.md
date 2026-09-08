@@ -57,13 +57,13 @@ Here's a map of Gemach's DeFi products:
 | Product | What it does |
 |---------|--------------|
 | **GDex Pro** | Trade, bridge, copy-trade, track your portfolio |
-| **Gemach AI** | Use plain English to execute DeFi actions |
+| **Agent Skills** | Let an AI agent execute DeFi actions in plain English |
 | **GLend** | Lend and borrow crypto |
 | **GLoans** | Borrow against your crypto holdings |
 | **GVault** | Earn yield on your assets |
 
 {% hint style="info" %}
-**Gemach AI** lets you do all of this using plain English commands — just type what you want to do (e.g., "swap 10 USDC for SOL" or "show me my portfolio performance this week") and the AI handles the rest. See [Gemach AI](../products/gemach-ai/README.md) for more.
+The **GDEX Agent Skills** let you do all of this using plain English — tell your AI agent what you want (e.g., "swap 10 USDC for SOL" or "show me my portfolio performance this week") and it executes on GDex Pro. See [Agent Skills](../products/agent-skills/README.md) for more.
 {% endhint %}
 
 ## DeFi vs traditional finance (TradFi)

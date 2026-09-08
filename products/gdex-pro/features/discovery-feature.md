@@ -2,6 +2,8 @@
 
 
 
+<figure><img src="../../../.gitbook/assets/gdex-discover.png" alt="The Discover page on GDEX Pro listing newly added token pairs"><figcaption><p>Discover — new pairs in real time</p></figcaption></figure>
+
 ## Discovery Feature
 
 The Discovery feature on GDEX.pro allows you to find new token pairs in real-time, providing comprehensive information to help you make informed trading decisions.

@@ -14,7 +14,7 @@ The Gemach Bot’s Smart Method Sniper is designed to empower you to trade newly
 
 ## Alpha Intelligence
 
-This tool is capable of exploring new market trends and executing strategic trades as well as providing users with the most valuable and up-to-date information in the DeFi space. In addition to being a DeFi co-pilot, Gemach AI - Alpha Intelligence can perform various actions such as checking if a URL is a phishing site, checking address and token security information, checking the risk of a dApp by URL, or checking for token approvals of an EOA address and associated risk items.&#x20;
+This tool is capable of exploring new market trends and executing strategic trades as well as providing users with the most valuable and up-to-date information in the DeFi space. In addition to being a DeFi co-pilot, GBot's Alpha Intelligence can perform various actions such as checking if a URL is a phishing site, checking address and token security information, checking the risk of a dApp by URL, or checking for token approvals of an EOA address and associated risk items.&#x20;
 
 This tool also serves as a market analysis powerhouse, offering deep insights into market trends, token metrics, and investment opportunities. This tool helps users stay ahead of the market, making informed decisions based on comprehensive data analysis.
 

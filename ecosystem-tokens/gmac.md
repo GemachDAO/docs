@@ -53,7 +53,14 @@ This design gives GMAC direct, ongoing utility within Gemach's autonomous AI eco
 
 ## GMAC Membership Tiers
 
-Hold GMAC to unlock platform features. Higher tiers unlock more agents, more chains, and more advanced capabilities across the Gemach product suite.
+> **Status: never released.** The tier program below was specified but never shipped. No holder
+> has ever been gated by it or received these benefits. It is kept here as a historical
+> specification, not a live entitlement — do not present it as one. A replacement built around
+> the GDEX Agent Skills is planned and will be announced separately.
+
+The specification read as follows: hold GMAC to unlock platform features, with higher tiers
+unlocking more agents, more chains, and more advanced capabilities across the Gemach product
+suite.
 
 ### BASIC — 10,000 GMAC
 
@@ -64,7 +71,7 @@ Hold GMAC to unlock platform features. Higher tiers unlock more agents, more cha
 | Wallets | 1 wallet across supported chains |
 | Portfolio tracking | Basic |
 | Scheduled runs | Weekly |
-| Analytics | Market reports and Gemach AI analytics |
+| Analytics | Market reports |
 
 ### ENHANCED — 25,000 GMAC
 
@@ -75,7 +82,7 @@ Hold GMAC to unlock platform features. Higher tiers unlock more agents, more cha
 | Wallets | 3 wallets across supported chains |
 | Portfolio tracking | Daily analytics |
 | Scheduled runs | Daily and weekly |
-| Analytics | Market reports and Gemach AI analytics |
+| Analytics | Market reports |
 
 ### PREMIUM — 50,000 GMAC
 
@@ -86,7 +93,7 @@ Hold GMAC to unlock platform features. Higher tiers unlock more agents, more cha
 | Wallets | 5 wallets across supported chains |
 | Portfolio tracking | Daily analytics + priority execution |
 | Scheduled runs | Daily, weekly, and monthly |
-| Analytics | Market reports, Gemach AI analytics, advanced signals |
+| Analytics | Market reports and advanced signals |
 | GDex Pro | Priority execution queue |
 
 ### EXCLUSIVE — 100,000 GMAC

@@ -1,6 +1,8 @@
 # Outcomes
 
 
+<figure><img src="../../../.gitbook/assets/gdex-outcomes.png" alt="The Outcomes page on GDEX Pro showing Hyperliquid prediction markets"><figcaption><p>Outcomes — Hyperliquid prediction and event markets</p></figcaption></figure>
+
 ## Watch (20 sec)
 
 Outcomes — prediction markets on GDEX Pro.
