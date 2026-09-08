@@ -85,8 +85,11 @@ Published product economics (aligned with trade.btnomb.com guides and founder co
 ## GMAC
 
 - Native Gemach token. Max supply **500,000,000**.
-- Used for governance (Snapshot `gemach.eth`), optional product tiers, and Gclaw agent metabolism.
-- **Basic GDEX Pro trading does not require holding GMAC.** Docs still describe hold tiers (10k / 25k / 50k / 100k) for advanced agent features — do not treat those as a gate on first trade / spot access.
+- Used for governance (Snapshot `gemach.eth`) and Gclaw agent metabolism.
+- **Basic GDEX Pro trading does not require holding GMAC.** The hold-tier program
+  (10k / 25k / 50k / 100k) was specified but **never released** — no holder was ever gated by it,
+  and it must not be presented as a live entitlement. A replacement built around the Agent Skills
+  is planned and unannounced.
 
 ## Agent install
 
