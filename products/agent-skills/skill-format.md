@@ -19,9 +19,10 @@ gdex-skill/
 │   │   └── SKILL.md        # one skill = one directory + one SKILL.md
 │   ├── gdex-spot-trading/
 │   │   └── SKILL.md
-│   └── …                   # 27 skills total
+│   └── …                   # 33 skills total (data skills also carry scripts/)
 ├── src/                    # the @gdexsdk/gdex-skill TypeScript SDK
-└── mcp-server/             # the 116-tool MCP server
+├── mcp-server/             # the 117-tool MCP server
+└── harness/                # bring-your-own-key Claude harness for the data skills
 ```
 
 The directory name becomes the skill's identifier (e.g. `gdex-spot-trading`) and must match the `name` field in the `SKILL.md` front matter.

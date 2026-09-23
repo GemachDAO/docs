@@ -56,6 +56,7 @@
   * [Creating Custom Skills](products/agent-skills/creating-custom-skills.md)
   * [GDEX Trading Skills](products/agent-skills/gdex-trading-skills.md)
   * [Platform & UI Skills](products/agent-skills/utility-skills.md)
+  * [Risk & Market Data Skills](products/agent-skills/risk-data-skills.md)
 * [🧮 GLend](products/glend/README.md)
   * [⏩ Supply](products/glend/supply.md)
   * [◀️ Borrow](products/glend/borrow.md)

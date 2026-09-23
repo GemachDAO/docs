@@ -48,7 +48,8 @@ currently names only five. Prefer the full table when accuracy matters.
 ## Core features
 
 - Spot trading with DEX routing
-- HyperLiquid perpetual futures (leverage documented up to 50x; TP/SL)
+- HyperLiquid perpetual futures (TP/SL). Max leverage is per market: **40x** on core HyperLiquid (BTC);
+  50x exists only on builder-DEX FX pairs. Do not write "up to 50x" next to BTC or crypto perps.
 - Copy trading, including mirroring up to **6 AI agent wallets**
 - Cross-chain bridge
 - Discovery, Portfolio, Trenches (memecoin board), Bubble Maps
@@ -58,7 +59,8 @@ currently names only five. Prefer the full table when accuracy matters.
   marked coming soon in the UI. Up to 5 agents, Conservative / Balanced / Aggressive presets
 - Outcomes (Hyperliquid prediction / event markets)
 - Fiat on-ramp via Apple Pay / card providers inside the terminal
-- Agent Skills + MCP: 29 skills; **117 MCP tools** = **109 execution + 8 documentation**
+- Agent Skills + MCP: 33 skills (29 trading/platform/UI + 4 risk & market data: `gdex-hl-market-risk`,
+  `gdex-hl-anomaly`, `gdex-token-risk`, `gvault`); **117 MCP tools** = **109 execution + 8 documentation**
   (counted from `mcp-server/src/tools/*.ts` plus the 8 documentation tools in `mcp-server/src/index.ts`)
 
 ## Fees and KYC
