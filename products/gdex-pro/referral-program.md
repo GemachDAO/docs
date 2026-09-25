@@ -1,6 +1,6 @@
 # Referral Program
 
-Welcome to GDEX’s Referral Program! At GDEX, we believe in rewarding our community for helping us grow. This program lets you earn a share of GDEX's net trading fee when the people you invite trade on GDEX. Earnings depend on referral trading activity and are not guaranteed.
+Welcome to GDEX’s Referral Program! At GDEX, we believe in rewarding our community for helping us grow. This program lets you earn a share of GDEX’s net trading fee when the people you invite trade on GDEX. Earnings depend on referral trading activity and are not guaranteed.
 
 ### Why Refer Others?
 
@@ -20,26 +20,27 @@ Our referral program has two tiers:
 
 * Commissions are based on GDEX’s net fee. This means your share is calculated after applying any discounts or promotions.
 * There’s no cap on earnings. The more people you refer, and the more they trade, the more you earn.
-* Your Level 1 referrals earn 30
-*   Getting Your Referral Link
+* Your Level 1 referrals earn 30% from their own direct referrals.
 
-    1. Log in to your GDEX account.
-    2. Navigate to the Referral Program section.
-    3. Copy your unique referral link and share it with friends, family, or on social media.
+### Getting Your Referral Link
 
-    Whenever someone signs up using your link and starts trading, you’ll automatically receive your share of the trading fees.
+1. Log in to your GDEX account.
+2. Navigate to the Referral Program section.
+3. Copy your unique referral link and share it with friends, family, or on social media.
 
-    ### How Much Can You Earn?
+Whenever someone signs up using your link and starts trading, you’ll automatically receive your share of the trading fees.
 
-    Your earnings depend on the trading activity of your referrals. Below is a rough illustration for two scenarios:
+### How Much Can You Earn?
 
-    | Scenario                        | Trading Volume | Net Fee (assumed 1%) | Your Commission   |
-    | ------------------------------- | -------------- | -------------------- | ----------------- |
-    | Level 1 referral trades $10,000 | $10,000        | $100                 | $30 (30% of $100) |
-    | Level 2 referral trades $10,000 | $10,000        | $100                 | $10 (10% of $100) |
+Your earnings depend on the trading activity of your referrals. Below is a rough illustration for two scenarios:
 
-    These figures are illustrative only and assume a 1% fee. Actual earnings depend on your referrals' trading activity and are not guaranteed.
+| Scenario                        | Trading Volume | Net Fee (assumed 1%) | Your Commission   |
+| ------------------------------- | -------------- | -------------------- | ----------------- |
+| Level 1 referral trades $10,000 | $10,000        | $100                 | $30 (30% of $100) |
+| Level 2 referral trades $10,000 | $10,000        | $100                 | $10 (10% of $100) |
 
-    ### Join Today
+These figures are illustrative only and assume a 1% fee. Actual earnings depend on your referrals’ trading activity and are not guaranteed.
 
-    Start sharing your GDEX referral link and watch your earnings grow. With competitive commissions and no cap on rewards, there’s never been a better time to help others discover GDEX.
+### Join Today
+
+Share your GDEX referral link to get started. Commissions have no cap; earnings depend on your referrals’ trading activity and are not guaranteed.

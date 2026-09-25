@@ -1,5 +1,5 @@
 ---
-description: Gemach is an agent-first DeFi super app — trade, lend, invest, and automate across 12+ chains without giving up your keys.
+description: Gemach is an agent-first DeFi super app — trade, lend, invest, and automate across 12 networks (11 spot + HyperLiquid perps) without giving up your keys.
 ---
 
 # 📈 What is Gemach?
@@ -26,7 +26,7 @@ Gemach is a community-governed DAO building the most complete self-custodial DeF
 
 ## Supported Networks
 
-Gemach products span 12+ chains through a unified interface:
+Gemach products span 12 networks (11 spot + HyperLiquid perps) through a unified interface:
 
 | Chain | Category |
 |---|---|
@@ -39,6 +39,9 @@ Gemach products span 12+ chains through a unified interface:
 | Sui | L1 |
 | Sonic | L1 |
 | Berachain | L1 |
+| Fraxtal | L2 (Ethereum) |
+| Nibiru | L1 |
+| HyperLiquid | L1 (perps) |
 
 ---
 
