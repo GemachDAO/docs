@@ -3,6 +3,10 @@
 
 
 
+{% hint style="warning" %}
+Perpetual futures and leverage carry a high risk of loss. Copy trading does not guarantee results; past performance of any wallet or AI agent does not predict future results. Not financial advice.
+{% endhint %}
+
 ## Watch (24 sec)
 
 Copy Trade — setup form and top traders.

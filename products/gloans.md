@@ -100,7 +100,7 @@ Monitor your collateral ratio as ETH price moves. Add collateral or repay LUSD i
 > ⚠️ **Warning:** Borrowing against volatile collateral carries liquidation risk. ETH price drops can quickly move your position toward the minimum collateral ratio. Always maintain a safety buffer and monitor your position regularly.
 
 - **Liquidation risk** — ETH price volatility can trigger liquidation if your collateral ratio falls below 110%
-- **Smart contract risk** — Liquity is extensively audited but no smart contract is 100% risk-free
+- **Smart contract risk** — Liquity is extensively audited but every smart contract carries some risk
 - **Redemption risk** — If ETH/LUSD price conditions trigger mass redemptions, your Trove may be partially redeemed against (you receive equivalent ETH value in return)
 
 ---

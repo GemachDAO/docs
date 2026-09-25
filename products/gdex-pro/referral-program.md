@@ -1,6 +1,6 @@
 # Referral Program
 
-Welcome to GDEX’s Referral Program! At GDEX, we believe in rewarding our community for helping us grow. This program allows you to earn passive income when the people you invite trade on GDEX.
+Welcome to GDEX’s Referral Program! At GDEX, we believe in rewarding our community for helping us grow. This program lets you earn a share of GDEX's net trading fee when the people you invite trade on GDEX. Earnings depend on referral trading activity and are not guaranteed.
 
 ### Why Refer Others?
 
@@ -38,7 +38,7 @@ Our referral program has two tiers:
     | Level 1 referral trades $10,000 | $10,000        | $100                 | $30 (30% of $100) |
     | Level 2 referral trades $10,000 | $10,000        | $100                 | $10 (10% of $100) |
 
-    As you can see, inviting active traders can lead to significant passive income. And because Level 1 referrals earn 30% from their own direct referrals, your network has an incentive to expand—further increasing your potential earnings.
+    These figures are illustrative only and assume a 1% fee. Actual earnings depend on your referrals' trading activity and are not guaranteed.
 
     ### Join Today
 

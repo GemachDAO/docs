@@ -4,6 +4,10 @@
 
 
 
+{% hint style="warning" %}
+Perpetual futures and leverage carry a high risk of loss. Copy trading does not guarantee results; past performance of any wallet or AI agent does not predict future results. Not financial advice.
+{% endhint %}
+
 <figure><img src="../../.gitbook/assets/gdex-perp.png" alt="The perpetual futures trading screen on GDEX Pro"><figcaption><p>Hyperliquid perpetual futures on GDEX Pro</p></figcaption></figure>
 
 ## Watch (62 sec)
