@@ -48,11 +48,13 @@ Only interact with Gemach products through these official domains. Bookmark them
 | GDex Pro | `gdex.pro` |
 | Gemach (main site) | `gemach.io` |
 | Gclaw | `gemach.io/gclaw` |
-| GLend | `glend.gemach.io` |
+| GLend V2 | `glendv2.gemach.io` |
 | GLoans | `stake.gemach.io` |
 | GBot | Telegram only: `@Gemach_Bot` |
 | GScanner | Telegram only: `@gbotscanner` |
 | Gemach Support | Telegram only: `@GBotSupportBot` |
+
+> ⚠️ **GLend on Arbitrum is not Gemach's.** The Arbitrum lending markets earlier docs listed as GLend are the legacy TenderFi protocol, which Gemach never controlled. Do not deposit into them. See the [GLend overview](../products/glend/README.md).
 
 > ⚠️ **Warning:** Phishing sites impersonate legitimate dApps with near-identical domain names (e.g., `gdex-pro.com`, `gemach-io.com`). Always verify you are on the exact official domain before connecting your wallet or approving transactions.
 
@@ -62,7 +64,7 @@ Only interact with Gemach products through these official domains. Bookmark them
 
 Before interacting with any smart contract, verify the address matches Gemach's published addresses:
 
-- GLend contract addresses: [products/glend/contract-addresses.md](../products/glend/contract-addresses.md)
+- GLend V2 contract addresses (Ethereum and Base): [products/glend/contract-addresses.md](../products/glend/contract-addresses.md)
 - GMAC token: `0xd96e84ddbc7cbe1d73c55b6fe8c64f3a6550deea` (Ethereum)
 - Always cross-reference contract addresses on [Etherscan](https://etherscan.io), [Arbiscan](https://arbiscan.io), or the relevant block explorer before approving interactions
 
