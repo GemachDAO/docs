@@ -16,7 +16,7 @@ Gemach is a community-governed DAO building the most complete self-custodial DeF
 | **Gclaw** | A living AI trading agent that consumes GMAC as life energy and must trade to survive | [gemach.io/gclaw](https://gemach.io/gclaw) |
 | **Agent Skills** | Modular skill packages that let any AI agent trade on GDex Pro — spot, perps, copy trading, bridge, and portfolio | [Docs](products/agent-skills/README.md) |
 | **GBot** | Telegram-native sniper and trading bot for Solana and EVM chains | [t.me/Gemach_Bot](https://t.me/Gemach_Bot) |
-| **GLend** | Algorithmic lending and borrowing money markets on Arbitrum | [glend.gemach.io](https://glend.gemach.io/) |
+| **GLend** | Lending and borrowing money markets on Ethereum and Base (GLend V2) | [glendv2.gemach.io](https://glendv2.gemach.io/) |
 | **GVault** | Non-custodial on-chain vault strategy powered by Enzyme | [Enzyme Vault](https://gmacl.enzyme.community/vault/0x740cbfefb9ca9c1c99d95b711e959dd960f8bdb6) |
 | **GFund** | Tokenized index fund via TokenSets — diversified on-chain exposure in a single ERC-20 | [TokenSets](https://www.tokensets.com/#/v2/set/0xf73642407B8d471cDbc60a095c9D9B28EfCDd710) |
 | **GLoans** | Interest-free ETH-collateralized loans (LUSD) via the Liquity protocol | [stake.gemach.io](https://stake.gemach.io) |

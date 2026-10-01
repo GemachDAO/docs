@@ -112,4 +112,4 @@ Monitor your collateral ratio as ETH price moves. Add collateral or repay LUSD i
 | [GLoans Platform](https://stake.gemach.io) | Borrow LUSD and manage your position |
 | [Liquity Protocol](https://www.liquity.org/) | Underlying protocol documentation |
 | [LUSD Documentation](https://docs.liquity.org/) | How LUSD works and peg mechanics |
-| [GLend](glend/README.md) | Gemach's algorithmic money markets on Arbitrum |
+| [GLend](glend/README.md) | Gemach's lending and borrowing money markets on Ethereum and Base |

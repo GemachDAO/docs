@@ -8,7 +8,7 @@ description: Gemach's development history and forward-looking milestones — fro
 
 ## ✅ Completed (2024)
 
-- ✅ **GLend Protocol** — Algorithmic lending and borrowing on Arbitrum; GMX V2 yield integration; dynamic interest rates
+- ✅ **GLend V2** — Lending and borrowing money markets on Ethereum and Base with algorithmic interest rates
 - ✅ **GBot** — Telegram-native sniper and trading bot on Solana and EVM chains
 - ✅ **Alpha Intelligence** — AI-powered market analytics and trading signals
 - ✅ **GMAC Launch** — Governance token fully distributed to community

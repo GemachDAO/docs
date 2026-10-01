@@ -1,11 +1,5 @@
 # 🔬 Audits
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+The PeckShield report that earlier versions of this page linked to covers the **TenderFi v1** codebase, which is the legacy Arbitrum deployment described on the [GLend overview](README.md). It is not an audit of GLend V2 on Ethereum and Base. It remains available here for reference: [PeckShield-Audit-Report-Tender-v1.0.pdf](https://github.com/peckshield/publications/tree/master/audit_reports/PeckShield-Audit-Report-Tender-v1.0.pdf).
 
-Peckshield Audit: [<mark style="color:blue;">https://github.com/peckshield/publications/tree/master/audit\_reports/PeckShield-Audit-Report-Tender-v1.0.pdf</mark>](https://github.com/peckshield/publications/tree/master/audit_reports/PeckShield-Audit-Report-Tender-v1.0.pdf)
-
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
-
-Armors.io Audit: [<mark style="color:blue;">http://odex.vip/?sign=6100531bc2e5bf8b94dd7a7b87b53577</mark>](http://odex.vip/?sign=6100531bc2e5bf8b94dd7a7b87b53577)
-
-There will be more audits performed in the future.
+No GLend V2 audit report is published on this page yet. Reports will be added here when they are available.

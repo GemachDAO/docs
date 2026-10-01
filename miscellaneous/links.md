@@ -12,7 +12,7 @@ description: Quick reference links to all Gemach products, social channels, comm
 | GDex Pro | [gdex.pro](https://gdex.pro) |
 | Gclaw | [gemach.io/gclaw](https://gemach.io/gclaw) |
 | GBot | [t.me/Gemach_Bot](https://t.me/Gemach_Bot) |
-| GLend | [glend.gemach.io](https://glend.gemach.io/) |
+| GLend V2 | [glendv2.gemach.io](https://glendv2.gemach.io/) |
 | GVault | [Enzyme Vault](https://gmacl.enzyme.community/vault/0x740cbfefb9ca9c1c99d95b711e959dd960f8bdb6) |
 | GFund | [TokenSets](https://www.tokensets.com/#/v2/set/0xf73642407B8d471cDbc60a095c9D9B28EfCDd710) |
 | GLoans | [stake.gemach.io](https://stake.gemach.io) |
